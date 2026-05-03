@@ -26,11 +26,12 @@ $sports = get_active_sports();
 
         <div class="flex flex-wrap justify-center gap-6 md:gap-12">
             <div class="text-center">
-                <div class="text-3xl md:text-4xl font-heading font-black text-accent stat-counter" data-target="10">0</div>
+                <div class="text-3xl md:text-4xl font-heading font-black text-accent stat-counter" data-target="<?php echo count($sports); ?>">0</div>
                 <div class="text-xs font-bold uppercase tracking-widest text-muted mt-1">Sports</div>
             </div>
             <div class="text-center border-x border-border px-6 md:px-12">
-                <div class="text-3xl md:text-4xl font-heading font-black text-accent stat-counter" data-target="100">0</div>
+                <?php $total_teams = $pdo->query("SELECT COUNT(*) FROM teams")->fetchColumn(); ?>
+                <div class="text-3xl md:text-4xl font-heading font-black text-accent stat-counter" data-target="<?php echo $total_teams; ?>">0</div>
                 <div class="text-xs font-bold uppercase tracking-widest text-muted mt-1">Teams Ranked</div>
             </div>
             <div class="text-center">
@@ -146,7 +147,7 @@ $sports = get_active_sports();
     <div class="container mx-auto px-4">
         <div class="flex items-center space-x-6 border-l-4 border-accent pl-6 py-2">
             <span class="text-accent font-heading font-black uppercase italic tracking-tighter text-xl shrink-0">Did You Know?</span>
-            <div class="text-sm font-medium italic animate-pulse">
+            <div id="rotating-fact" class="text-sm font-medium italic min-h-[1.5em] flex items-center">
                 Cricket is the second most popular sport in the world with over 2.5 billion fans globally.
             </div>
         </div>

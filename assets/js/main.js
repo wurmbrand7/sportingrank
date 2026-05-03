@@ -123,6 +123,27 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Rotating Facts
+    const facts = [
+        "Cricket is the second most popular sport in the world with over 2.5 billion fans globally.",
+        "Soccer is played by 250 million players in over 200 countries.",
+        "Basketball was invented by Dr. James Naismith in 1891.",
+        "Field Hockey is the national sport of Pakistan.",
+        "The first modern Olympic Games were held in Athens, Greece, in 1896."
+    ];
+    const factElement = document.getElementById('rotating-fact');
+    if (factElement) {
+        let currentFact = 0;
+        setInterval(() => {
+            factElement.style.opacity = '0';
+            setTimeout(() => {
+                currentFact = (currentFact + 1) % facts.length;
+                factElement.innerText = facts[currentFact];
+                factElement.style.opacity = '1';
+            }, 500);
+        }, 5000);
+    }
 });
 
 function voteForTeam(teamName) {
