@@ -146,7 +146,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-function voteForTeam(teamName) {
-    alert('Thank you for voting for ' + teamName + '!');
-    // In a real app, this would be an AJAX call to a voting endpoint
+function voteForTeam(teamId, teamName) {
+    fetch('ajax/vote.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'team_id=' + teamId
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Thank you for voting for ' + teamName + '! Your vote has been recorded.');
+        } else {
+            alert('Error: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while voting.');
+    });
 }

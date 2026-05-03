@@ -93,7 +93,7 @@ $teams = get_top_teams($sport['id'], 50);
                                             </div>
                                         </td>
                                         <td class="py-4 px-6 text-center">
-                                            <button onclick="voteForTeam('<?php echo e($team['team_name']); ?>')" class="bg-accent text-primary px-4 py-2 rounded font-black uppercase text-[10px] hover:bg-white transition">Vote</button>
+                                            <button onclick="voteForTeam(<?php echo $team['id']; ?>, '<?php echo e($team['team_name']); ?>')" class="bg-accent text-primary px-4 py-2 rounded font-black uppercase text-[10px] hover:bg-white transition">Vote</button>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -128,7 +128,7 @@ $teams = get_top_teams($sport['id'], 50);
                     $other_sports = array_filter(get_active_sports(), function($s) use ($slug) { return $s['slug'] !== $slug; });
                     foreach (array_slice($other_sports, 0, 5) as $os):
                     ?>
-                        <a href="sport.php?slug=<?php echo $os['slug']; ?>" class="block glass-card p-4 rounded-xl border border-border flex items-center justify-between group">
+                        <a href="<?php echo SITE_URL; ?>/sport/<?php echo e($os['slug']); ?>" class="block glass-card p-4 rounded-xl border border-border flex items-center justify-between group">
                             <div class="flex items-center space-x-3">
                                 <span class="text-xl"><?php echo $os['icon']; ?></span>
                                 <span class="font-bold uppercase tracking-tight group-hover:text-accent transition"><?php echo $os['name']; ?></span>

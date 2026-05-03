@@ -118,7 +118,7 @@ $sports = get_active_sports();
                                                 <?php echo format_trend($team['trend']); ?>
                                             </td>
                                             <td class="py-3 px-4 text-center">
-                                                <button onclick="voteForTeam('<?php echo e($team['team_name']); ?>')" class="text-[10px] bg-accent/10 hover:bg-accent text-accent hover:text-primary border border-accent/30 px-2 py-1 rounded transition font-black uppercase">Vote</button>
+                                                <button onclick="voteForTeam(<?php echo $team['id']; ?>, '<?php echo e($team['team_name']); ?>')" class="text-[10px] bg-accent/10 hover:bg-accent text-accent hover:text-primary border border-accent/30 px-2 py-1 rounded transition font-black uppercase">Vote</button>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -128,7 +128,7 @@ $sports = get_active_sports();
 
                         <!-- Card Footer -->
                         <div class="p-4 bg-card/80 border-t border-border">
-                            <a href="sport.php?slug=<?php echo e($sport['slug']); ?>" class="flex items-center justify-center space-x-2 text-xs font-black uppercase tracking-widest hover:text-accent transition">
+                            <a href="<?php echo SITE_URL; ?>/sport/<?php echo e($sport['slug']); ?>" class="flex items-center justify-center space-x-2 text-xs font-black uppercase tracking-widest hover:text-accent transition">
                                 <span>View Full Rankings</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />

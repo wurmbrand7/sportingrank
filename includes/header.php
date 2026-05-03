@@ -56,7 +56,7 @@ $settings = get_all_settings();
 <body class="bg-primary text-[#EEEEFF] font-sans">
     <nav class="sticky top-0 z-50 bg-primary/80 backdrop-blur-md border-b border-border">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="<?php echo SITE_URL; ?>" class="flex items-center space-x-2 text-2xl font-heading font-black italic uppercase tracking-tighter">
+            <a href="<?php echo SITE_URL; ?>/" class="flex items-center space-x-2 text-2xl font-heading font-black italic uppercase tracking-tighter">
                 <span class="text-accent">⚽</span>
                 <span>Sporting<span class="text-accent">Rank</span></span>
             </a>

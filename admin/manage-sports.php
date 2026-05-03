@@ -7,6 +7,9 @@ require_login();
 $sports = $pdo->query("SELECT * FROM sports ORDER BY sort_order ASC")->fetchAll();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!verify_csrf_token($_POST['csrf_token'] ?? '')) {
+        die("CSRF token validation failed.");
+    }
     $action = $_POST['action'] ?? '';
 
     if ($action === 'add' || $action === 'edit') {
@@ -115,6 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="admin-card w-full max-w-lg p-8">
                 <h3 id="modal-title" class="text-xl font-black uppercase italic tracking-tighter mb-6">Add New Sport</h3>
                 <form method="POST">
+                    <input type="hidden" name="csrf_token" value="<?php echo get_csrf_token(); ?>">
                     <input type="hidden" name="action" id="form-action" value="add">
                     <input type="hidden" name="id" id="form-id" value="">
                     <div class="grid grid-cols-2 gap-4">

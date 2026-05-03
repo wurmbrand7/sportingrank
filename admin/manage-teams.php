@@ -8,6 +8,9 @@ $sport_id = (int)($_GET['sport_id'] ?? ($pdo->query("SELECT id FROM sports LIMIT
 $sports = $pdo->query("SELECT id, name FROM sports ORDER BY sort_order ASC")->fetchAll();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!verify_csrf_token($_POST['csrf_token'] ?? '')) {
+        die("CSRF token validation failed.");
+    }
     $action = $_POST['action'] ?? '';
 
     if ($action === 'add' || $action === 'edit') {
@@ -124,6 +127,7 @@ $teams = $teams->fetchAll();
             <div class="admin-card w-full max-w-lg p-8">
                 <h3 id="modal-title" class="text-xl font-black uppercase italic tracking-tighter mb-6">Add Team</h3>
                 <form method="POST">
+                    <input type="hidden" name="csrf_token" value="<?php echo get_csrf_token(); ?>">
                     <input type="hidden" name="action" id="form-action" value="add">
                     <input type="hidden" name="id" id="form-id" value="">
                     <input type="hidden" name="sport_id" value="<?php echo $sport_id; ?>">
