@@ -66,6 +66,7 @@ CREATE TABLE IF NOT EXISTS `teams` (
   `wins` int(11) DEFAULT 0,
   `losses` int(11) DEFAULT 0,
   `draws` int(11) DEFAULT 0,
+  `votes` int(11) DEFAULT 0,
   `notable_achievement` varchar(255) DEFAULT NULL,
   `is_active` tinyint(1) DEFAULT 1,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),

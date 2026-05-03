@@ -27,8 +27,10 @@ function get_active_sports() {
 
 function get_top_teams($sport_id, $limit = 10) {
     global $pdo;
-    $stmt = $pdo->prepare("SELECT * FROM teams WHERE sport_id = ? AND is_active = 1 ORDER BY rank_position ASC LIMIT ?");
-    $stmt->execute([$sport_id, $limit]);
+    $stmt = $pdo->prepare("SELECT * FROM teams WHERE sport_id = :sport_id AND is_active = 1 ORDER BY rank_position ASC LIMIT :limit");
+    $stmt->bindValue(':sport_id', $sport_id, PDO::PARAM_INT);
+    $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+    $stmt->execute();
     return $stmt->fetchAll();
 }
 

@@ -58,6 +58,8 @@ $teams = $teams->fetchAll();
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@700;900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/admin.css">
+    <!-- SortableJS -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 </head>
 <body class="bg-[#0a0a1a] text-[#EEEEFF] font-sans flex min-h-screen">
 
