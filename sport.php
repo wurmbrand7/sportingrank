@@ -55,6 +55,7 @@ $teams = get_top_teams($sport['id'], 50);
                                     <th class="py-4 px-6 text-center">W/L/D</th>
                                     <th class="py-4 px-6 text-right">Points</th>
                                     <th class="py-4 px-6 text-center">Trend</th>
+                                    <th class="py-4 px-6 text-center">Vote</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -90,6 +91,9 @@ $teams = get_top_teams($sport['id'], 50);
                                             <div class="scale-125">
                                                 <?php echo format_trend($team['trend']); ?>
                                             </div>
+                                        </td>
+                                        <td class="py-4 px-6 text-center">
+                                            <button onclick="voteForTeam('<?php echo e($team['team_name']); ?>')" class="bg-accent text-primary px-4 py-2 rounded font-black uppercase text-[10px] hover:bg-white transition">Vote</button>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

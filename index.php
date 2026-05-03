@@ -89,6 +89,7 @@ $sports = get_active_sports();
                                         <th class="py-2 px-2">Team</th>
                                         <th class="py-2 px-4 text-right">Points</th>
                                         <th class="py-2 px-4 text-center">Trend</th>
+                                        <th class="py-2 px-4 text-center">Vote</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -110,10 +111,13 @@ $sports = get_active_sports();
                                                 </div>
                                             </td>
                                             <td class="py-3 px-4 text-right font-heading font-black text-accent italic">
-                                                <?php echo number_format($team['points']); ?> <span class="text-[8px] italic opacity-50"><?php echo e($team['points_label']); ?></span>
+                                                <span class="points-counter" data-target="<?php echo (int)$team['points']; ?>">0</span> <span class="text-[8px] italic opacity-50"><?php echo e($team['points_label']); ?></span>
                                             </td>
                                             <td class="py-3 px-4 text-center">
                                                 <?php echo format_trend($team['trend']); ?>
+                                            </td>
+                                            <td class="py-3 px-4 text-center">
+                                                <button onclick="voteForTeam('<?php echo e($team['team_name']); ?>')" class="text-[10px] bg-accent/10 hover:bg-accent text-accent hover:text-primary border border-accent/30 px-2 py-1 rounded transition font-black uppercase">Vote</button>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

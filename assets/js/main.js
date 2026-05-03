@@ -12,6 +12,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Points Counter Animation
+    const pointsCounters = document.querySelectorAll('.points-counter');
+    pointsCounters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        const countUp = new countUp.CountUp(counter, target, {
+            duration: 1.5,
+            useEasing: true,
+            separator: ','
+        });
+        if (!countUp.error) {
+            countUp.start();
+        }
+    });
+
     // Sports Filtering
     const filterBtns = document.querySelectorAll('.sport-filter-btn');
     const sportCards = document.querySelectorAll('.sport-ranking-card');
@@ -52,4 +66,66 @@ document.addEventListener('DOMContentLoaded', () => {
             nav.classList.remove('bg-primary/95', 'shadow-2xl');
         }
     });
+
+    // Live Search Logic
+    const searchInput = document.getElementById('site-search');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const sportCards = document.querySelectorAll('.sport-ranking-card');
+
+            sportCards.forEach(card => {
+                const sportName = card.querySelector('h3').innerText.toLowerCase();
+                const teamNames = Array.from(card.querySelectorAll('tbody span.font-bold')).map(span => span.innerText.toLowerCase());
+
+                const matchesSport = sportName.includes(query);
+                const matchesTeam = teamNames.some(name => name.includes(query));
+
+                if (matchesSport || matchesTeam) {
+                    card.style.display = 'block';
+                    card.style.opacity = '1';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    }
+
+    // Theme Toggle Logic
+    const themeToggle = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-icon-dark');
+    const lightIcon = document.getElementById('theme-icon-light');
+
+    if (themeToggle) {
+        // Load preference
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.remove('bg-primary', 'text-[#EEEEFF]');
+            document.body.classList.add('bg-white', 'text-gray-900');
+            darkIcon.classList.remove('hidden');
+            lightIcon.classList.add('hidden');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            if (document.body.classList.contains('bg-primary')) {
+                // Switch to light
+                document.body.classList.remove('bg-primary', 'text-[#EEEEFF]');
+                document.body.classList.add('bg-white', 'text-gray-900');
+                darkIcon.classList.remove('hidden');
+                lightIcon.classList.add('hidden');
+                localStorage.setItem('theme', 'light');
+            } else {
+                // Switch to dark
+                document.body.classList.remove('bg-white', 'text-gray-900');
+                document.body.classList.add('bg-primary', 'text-[#EEEEFF]');
+                darkIcon.classList.add('hidden');
+                lightIcon.classList.remove('hidden');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    }
 });
+
+function voteForTeam(teamName) {
+    alert('Thank you for voting for ' + teamName + '!');
+    // In a real app, this would be an AJAX call to a voting endpoint
+}
