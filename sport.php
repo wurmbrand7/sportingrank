@@ -11,7 +11,8 @@ if (!$sport) {
     exit;
 }
 
-$teams = get_top_teams($sport['id'], 50);
+$type = $_GET['type'] ?? 'national';
+$teams = get_top_teams($sport['id'], 50, $type);
 ?>
 
 <!-- Sport Hero -->
@@ -22,6 +23,12 @@ $teams = get_top_teams($sport['id'], 50);
     </div>
 
     <div class="container mx-auto px-4 relative z-10 text-center">
+        <div class="flex justify-center mb-8">
+            <div class="flex items-center space-x-4 bg-card p-1 rounded-full border border-border">
+                <a href="?slug=<?php echo $slug; ?>&type=national" class="px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition <?php echo $type === 'national' ? 'bg-accent text-primary' : 'text-muted hover:text-white'; ?>">National</a>
+                <a href="?slug=<?php echo $slug; ?>&type=club" class="px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition <?php echo $type === 'club' ? 'bg-accent text-primary' : 'text-muted hover:text-white'; ?>">Leagues</a>
+            </div>
+        </div>
         <div class="inline-flex items-center space-x-2 bg-accent/20 text-accent px-4 py-1 rounded-full border border-accent/30 text-xs font-black uppercase tracking-widest mb-6">
             <span><?php echo e($sport['governing_body']); ?> Official Ranking</span>
         </div>
@@ -55,6 +62,7 @@ $teams = get_top_teams($sport['id'], 50);
                                     <th class="py-4 px-6 text-center">W/L/D</th>
                                     <th class="py-4 px-6 text-right">Points</th>
                                     <th class="py-4 px-6 text-center">Trend</th>
+                                    <th class="py-4 px-6 text-center">Vote</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -91,6 +99,9 @@ $teams = get_top_teams($sport['id'], 50);
                                                 <?php echo format_trend($team['trend']); ?>
                                             </div>
                                         </td>
+                                        <td class="py-4 px-6 text-center">
+                                            <button onclick="voteForTeam(<?php echo $team['id']; ?>, '<?php echo e($team['team_name']); ?>')" class="bg-accent text-primary px-4 py-2 rounded font-black uppercase text-[10px] hover:bg-white transition">Vote</button>
+                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
@@ -124,7 +135,7 @@ $teams = get_top_teams($sport['id'], 50);
                     $other_sports = array_filter(get_active_sports(), function($s) use ($slug) { return $s['slug'] !== $slug; });
                     foreach (array_slice($other_sports, 0, 5) as $os):
                     ?>
-                        <a href="sport.php?slug=<?php echo $os['slug']; ?>" class="block glass-card p-4 rounded-xl border border-border flex items-center justify-between group">
+                        <a href="<?php echo SITE_URL; ?>/sport/<?php echo e($os['slug']); ?>" class="block glass-card p-4 rounded-xl border border-border flex items-center justify-between group">
                             <div class="flex items-center space-x-3">
                                 <span class="text-xl"><?php echo $os['icon']; ?></span>
                                 <span class="font-bold uppercase tracking-tight group-hover:text-accent transition"><?php echo $os['name']; ?></span>

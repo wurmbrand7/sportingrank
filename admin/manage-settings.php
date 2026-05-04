@@ -7,8 +7,16 @@ require_login();
 $settings = get_all_settings();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!verify_csrf_token($_POST['csrf_token'] ?? '')) {
+        die("CSRF token validation failed.");
+    }
     foreach ($_POST as $key => $value) {
-        $stmt = $pdo->prepare("INSERT INTO site_settings (setting_key, setting_value) VALUES (?, ?) ON CONFLICT(setting_key) DO UPDATE SET setting_value = excluded.setting_value");
+        if ($key === 'csrf_token') continue;
+        if (defined('DB_TYPE') && DB_TYPE === 'sqlite') {
+            $stmt = $pdo->prepare("INSERT INTO site_settings (setting_key, setting_value) VALUES (?, ?) ON CONFLICT(setting_key) DO UPDATE SET setting_value = excluded.setting_value");
+        } else {
+            $stmt = $pdo->prepare("INSERT INTO site_settings (setting_key, setting_value) VALUES (?, ?) ON DUPLICATE KEY UPDATE setting_value = VALUES(setting_value)");
+        }
         $stmt->execute([$key, $value]);
     }
     header("Location: manage-settings.php?success=1");
@@ -46,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </header>
 
         <form method="POST" class="max-w-4xl">
+            <input type="hidden" name="csrf_token" value="<?php echo get_csrf_token(); ?>">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- General -->
                 <div class="admin-card p-6">
