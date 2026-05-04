@@ -75,72 +75,80 @@ $sports = get_active_sports();
                             <div class="p-2">
                                 <!-- National Teams Body -->
                                 <div class="teams-tbody-national">
-                                    <?php foreach ($national_teams as $index => $team): ?>
-                                        <div class="team-row grid grid-cols-12 items-center py-3 px-6 hover:bg-white/[0.03] transition rounded-xl">
-                                            <div class="col-span-1">
-                                                <?php
-                                                    $rank = $team['rank_position'];
-                                                    $medal = 'bg-[#1e1e38] text-muted';
-                                                    if ($rank == 1) $medal = 'bg-[#FFD700] text-primary';
-                                                    if ($rank == 2) $medal = 'bg-[#C0C0C0] text-primary';
-                                                    if ($rank == 3) $medal = 'bg-[#CD7F32] text-primary';
-                                                ?>
-                                                <span class="w-7 h-7 flex items-center justify-center rounded-full text-[11px] font-black <?php echo $medal; ?>">
-                                                    <?php echo $rank; ?>
-                                                </span>
+                                    <?php if (empty($national_teams)): ?>
+                                        <div class="py-12 text-center text-muted/20 font-black uppercase italic tracking-widest text-[10px]">No national rankings found</div>
+                                    <?php else: ?>
+                                        <?php foreach ($national_teams as $index => $team): ?>
+                                            <div class="team-row grid grid-cols-12 items-center py-3 px-6 hover:bg-white/[0.03] transition rounded-xl">
+                                                <div class="col-span-1">
+                                                    <?php
+                                                        $rank = $team['rank_position'];
+                                                        $medal = 'bg-[#1e1e38] text-muted';
+                                                        if ($rank == 1) $medal = 'bg-[#FFD700] text-primary';
+                                                        if ($rank == 2) $medal = 'bg-[#C0C0C0] text-primary';
+                                                        if ($rank == 3) $medal = 'bg-[#CD7F32] text-primary';
+                                                    ?>
+                                                    <span class="w-7 h-7 flex items-center justify-center rounded-full text-[11px] font-black <?php echo $medal; ?>">
+                                                        <?php echo $rank; ?>
+                                                    </span>
+                                                </div>
+                                                <div class="col-span-5 flex items-center gap-3">
+                                                    <img src="https://flagcdn.com/w40/<?php echo strtolower($team['country_code'] ?? 'us'); ?>.png" class="w-6 h-4 object-cover rounded-sm shadow-sm">
+                                                    <span class="font-bold text-[13px] text-white"><?php echo e($team['team_name']); ?></span>
+                                                </div>
+                                                <div class="col-span-2 text-center">
+                                                    <span class="font-black text-accent italic text-[14px]">
+                                                        <span class="points-counter" data-target="<?php echo (int)$team['points']; ?>">0</span><span class="text-[9px] lowercase ml-0.5 not-italic">pts</span>
+                                                    </span>
+                                                </div>
+                                                <div class="col-span-2 text-center">
+                                                    <?php echo format_trend($team['trend']); ?>
+                                                </div>
+                                                <div class="col-span-2 text-right">
+                                                    <button onclick="voteForTeam(<?php echo $team['id']; ?>, '<?php echo e($team['team_name']); ?>')" class="vote-btn border border-accent/20 hover:bg-accent hover:text-primary transition-all text-[9px] font-black uppercase px-3 py-1.5 rounded">Vote</button>
+                                                </div>
                                             </div>
-                                            <div class="col-span-5 flex items-center gap-3">
-                                                <img src="https://flagcdn.com/w40/<?php echo strtolower($team['country_code'] ?? 'us'); ?>.png" class="w-6 h-4 object-cover rounded-sm shadow-sm">
-                                                <span class="font-bold text-[13px] text-white"><?php echo e($team['team_name']); ?></span>
-                                            </div>
-                                            <div class="col-span-2 text-center">
-                                                <span class="font-black text-accent italic text-[14px]">
-                                                    <span class="points-counter" data-target="<?php echo (int)$team['points']; ?>">0</span><span class="text-[9px] lowercase ml-0.5 not-italic">pts</span>
-                                                </span>
-                                            </div>
-                                            <div class="col-span-2 text-center">
-                                                <?php echo format_trend($team['trend']); ?>
-                                            </div>
-                                            <div class="col-span-2 text-right">
-                                                <button onclick="voteForTeam(<?php echo $team['id']; ?>, '<?php echo e($team['team_name']); ?>')" class="vote-btn border border-accent/20 hover:bg-accent hover:text-primary transition-all text-[9px] font-black uppercase px-3 py-1.5 rounded">Vote</button>
-                                            </div>
-                                        </div>
-                                    <?php endforeach; ?>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 </div>
 
                                 <!-- Club Teams Body (Hidden by default) -->
                                 <div class="teams-tbody-club hidden">
-                                    <?php foreach ($club_teams as $index => $team): ?>
-                                        <div class="team-row grid grid-cols-12 items-center py-3 px-6 hover:bg-white/[0.03] transition rounded-xl">
-                                            <div class="col-span-1">
-                                                <?php
-                                                    $rank = $team['rank_position'];
-                                                    $medal = 'bg-[#1e1e38] text-muted';
-                                                    if ($rank == 1) $medal = 'bg-[#FFD700] text-primary';
-                                                    if ($rank == 2) $medal = 'bg-[#C0C0C0] text-primary';
-                                                    if ($rank == 3) $medal = 'bg-[#CD7F32] text-primary';
-                                                ?>
-                                                <span class="w-7 h-7 flex items-center justify-center rounded-full text-[11px] font-black <?php echo $medal; ?>">
-                                                    <?php echo $rank; ?>
-                                                </span>
+                                    <?php if (empty($club_teams)): ?>
+                                        <div class="py-12 text-center text-muted/20 font-black uppercase italic tracking-widest text-[10px]">No league rankings found</div>
+                                    <?php else: ?>
+                                        <?php foreach ($club_teams as $index => $team): ?>
+                                            <div class="team-row grid grid-cols-12 items-center py-3 px-6 hover:bg-white/[0.03] transition rounded-xl">
+                                                <div class="col-span-1">
+                                                    <?php
+                                                        $rank = $team['rank_position'];
+                                                        $medal = 'bg-[#1e1e38] text-muted';
+                                                        if ($rank == 1) $medal = 'bg-[#FFD700] text-primary';
+                                                        if ($rank == 2) $medal = 'bg-[#C0C0C0] text-primary';
+                                                        if ($rank == 3) $medal = 'bg-[#CD7F32] text-primary';
+                                                    ?>
+                                                    <span class="w-7 h-7 flex items-center justify-center rounded-full text-[11px] font-black <?php echo $medal; ?>">
+                                                        <?php echo $rank; ?>
+                                                    </span>
+                                                </div>
+                                                <div class="col-span-5 flex items-center gap-3">
+                                                    <img src="https://flagcdn.com/w40/<?php echo strtolower($team['country_code'] ?? 'us'); ?>.png" class="w-6 h-4 object-cover rounded-sm shadow-sm">
+                                                    <span class="font-bold text-[13px] text-white"><?php echo e($team['team_name']); ?></span>
+                                                </div>
+                                                <div class="col-span-2 text-center">
+                                                    <span class="font-black text-accent italic text-[14px]">
+                                                        <span class="points-counter" data-target="<?php echo (int)$team['points']; ?>">0</span><span class="text-[9px] lowercase ml-0.5 not-italic">pts</span>
+                                                    </span>
+                                                </div>
+                                                <div class="col-span-2 text-center">
+                                                    <?php echo format_trend($team['trend']); ?>
+                                                </div>
+                                                <div class="col-span-2 text-right">
+                                                    <button onclick="voteForTeam(<?php echo $team['id']; ?>, '<?php echo e($team['team_name']); ?>')" class="vote-btn border border-accent/20 hover:bg-accent hover:text-primary transition-all text-[9px] font-black uppercase px-3 py-1.5 rounded">Vote</button>
+                                                </div>
                                             </div>
-                                            <div class="col-span-5 flex items-center gap-3">
-                                                <img src="https://flagcdn.com/w40/<?php echo strtolower($team['country_code'] ?? 'us'); ?>.png" class="w-6 h-4 object-cover rounded-sm shadow-sm">
-                                                <span class="font-bold text-[13px] text-white"><?php echo e($team['team_name']); ?></span>
-                                            </div>
-                                            <div class="col-span-2 text-center">
-                                                <span class="font-black text-accent italic text-[14px]">
-                                                    <span class="points-counter" data-target="<?php echo (int)$team['points']; ?>">0</span><span class="text-[9px] lowercase ml-0.5 not-italic">pts</span>
-                                                </span>
-                                            </div>
-                                            <div class="col-span-2 text-center">
-                                                <?php echo format_trend($team['trend']); ?>
-                                            </div>
-                                            <div class="col-span-2 text-right">
-                                                <button onclick="voteForTeam(<?php echo $team['id']; ?>, '<?php echo e($team['team_name']); ?>')" class="vote-btn border border-accent/20 hover:bg-accent hover:text-primary transition-all text-[9px] font-black uppercase px-3 py-1.5 rounded">Vote</button>
-                                            </div>
-                                        </div>
-                                    <?php endforeach; ?>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
 

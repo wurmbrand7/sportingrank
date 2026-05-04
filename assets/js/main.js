@@ -144,6 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function setTeamType(type) {
+    console.log('Switching to team type:', type);
     const nationalBtns = document.querySelectorAll('.type-filter-btn');
     nationalBtns.forEach(btn => {
         btn.classList.remove('bg-accent', 'text-primary');
@@ -151,8 +152,10 @@ function setTeamType(type) {
     });
 
     const activeBtn = document.getElementById('type-' + type);
-    activeBtn.classList.add('bg-accent', 'text-primary');
-    activeBtn.classList.remove('text-muted');
+    if (activeBtn) {
+        activeBtn.classList.add('bg-accent', 'text-primary');
+        activeBtn.classList.remove('text-muted');
+    }
 
     const nationalBodies = document.querySelectorAll('.teams-tbody-national');
     const clubBodies = document.querySelectorAll('.teams-tbody-club');
