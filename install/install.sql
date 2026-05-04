@@ -6,12 +6,21 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
+-- Drop existing tables to ensure a clean state
+-- --------------------------------------------------------
+DROP TABLE IF EXISTS `activity_log`;
+DROP TABLE IF EXISTS `teams`;
+DROP TABLE IF EXISTS `sports`;
+DROP TABLE IF EXISTS `site_settings`;
+DROP TABLE IF EXISTS `admin_users`;
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `sports`
 --
 
-CREATE TABLE IF NOT EXISTS `sports` (
+CREATE TABLE `sports` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `slug` varchar(100) NOT NULL,
@@ -50,7 +59,7 @@ INSERT INTO `sports` (`id`, `name`, `slug`, `icon`, `governing_body`, `ranking_t
 -- Table structure for table `teams`
 --
 
-CREATE TABLE IF NOT EXISTS `teams` (
+CREATE TABLE `teams` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sport_id` int(11) NOT NULL,
   `rank_position` int(11) NOT NULL,
@@ -77,138 +86,210 @@ CREATE TABLE IF NOT EXISTS `teams` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `teams`
+-- Dumping data for table `teams` (200 entries)
 --
 
--- Soccer (ID 1)
-INSERT INTO `teams` (`sport_id`, `rank_position`, `team_name`, `country_code`, `country_name`, `points`, `points_label`, `trend`) VALUES
-(1, 1, 'Argentina', 'ar', 'Argentina', 1883.50, 'pts', 'same'),
-(1, 2, 'France', 'fr', 'France', 1853.11, 'pts', 'same'),
-(1, 3, 'Spain', 'es', 'Spain', 1844.33, 'pts', 'up'),
-(1, 4, 'England', 'gb', 'England', 1807.83, 'pts', 'down'),
-(1, 5, 'Brazil', 'br', 'Brazil', 1784.37, 'pts', 'same'),
-(1, 6, 'Belgium', 'be', 'Belgium', 1761.27, 'pts', 'same'),
-(1, 7, 'Portugal', 'pt', 'Portugal', 1752.68, 'pts', 'up'),
-(1, 8, 'Netherlands', 'nl', 'Netherlands', 1748.24, 'pts', 'down'),
-(1, 9, 'Italy', 'it', 'Italy', 1729.40, 'pts', 'up'),
-(1, 10, 'Colombia', 'co', 'Colombia', 1724.37, 'pts', 'down');
-
--- Basketball (ID 2)
-INSERT INTO `teams` (`sport_id`, `rank_position`, `team_name`, `country_code`, `country_name`, `points`, `points_label`, `trend`) VALUES
-(2, 1, 'USA', 'us', 'United States', 838.8, 'pts', 'same'),
-(2, 2, 'Serbia', 'rs', 'Serbia', 758.2, 'pts', 'up'),
-(2, 3, 'Germany', 'de', 'Germany', 755.9, 'pts', 'same'),
-(2, 4, 'France', 'fr', 'France', 753.0, 'pts', 'up'),
-(2, 5, 'Canada', 'ca', 'Canada', 747.8, 'pts', 'up'),
-(2, 6, 'Spain', 'es', 'Spain', 746.7, 'pts', 'down'),
-(2, 7, 'Australia', 'au', 'Australia', 732.5, 'pts', 'down'),
-(2, 8, 'Argentina', 'ar', 'Argentina', 731.1, 'pts', 'down'),
-(2, 9, 'Latvia', 'lv', 'Latvia', 711.4, 'pts', 'up'),
-(2, 10, 'Lithuania', 'lt', 'Lithuania', 698.9, 'pts', 'same');
-
--- Cricket (ID 3)
-INSERT INTO `teams` (`sport_id`, `rank_position`, `team_name`, `country_code`, `country_name`, `points`, `points_label`, `trend`) VALUES
-(3, 1, 'India', 'in', 'India', 122, 'rating', 'same'),
-(3, 2, 'Australia', 'au', 'Australia', 116, 'rating', 'same'),
-(3, 3, 'South Africa', 'za', 'South Africa', 108, 'rating', 'up'),
-(3, 4, 'Pakistan', 'pk', 'Pakistan', 106, 'rating', 'down'),
-(3, 5, 'New Zealand', 'nz', 'New Zealand', 101, 'rating', 'same'),
-(3, 6, 'Sri Lanka', 'lk', 'Sri Lanka', 97, 'rating', 'up'),
-(3, 7, 'England', 'gb', 'England', 95, 'rating', 'down'),
-(3, 8, 'Bangladesh', 'bd', 'Bangladesh', 86, 'rating', 'same'),
-(3, 9, 'Afghanistan', 'af', 'Afghanistan', 82, 'rating', 'up'),
-(3, 10, 'West Indies', 'wi', 'West Indies', 75, 'rating', 'down');
-
--- Tennis (ID 4)
-INSERT INTO `teams` (`sport_id`, `rank_position`, `team_name`, `country_code`, `country_name`, `points`, `points_label`, `trend`) VALUES
-(4, 1, 'Jannik Sinner', 'it', 'Italy', 11830, 'pts', 'same'),
-(4, 2, 'Carlos Alcaraz', 'es', 'Spain', 7120, 'pts', 'up'),
-(4, 3, 'Alexander Zverev', 'de', 'Germany', 6805, 'pts', 'up'),
-(4, 4, 'Novak Djokovic', 'rs', 'Serbia', 6210, 'pts', 'down'),
-(4, 5, 'Daniil Medvedev', 'ru', 'Russia', 5230, 'pts', 'down'),
-(4, 6, 'Taylor Fritz', 'us', 'United States', 4415, 'pts', 'up'),
-(4, 7, 'Andrey Rublev', 'ru', 'Russia', 4070, 'pts', 'down'),
-(4, 8, 'Casper Ruud', 'no', 'Norway', 3855, 'pts', 'up'),
-(4, 9, 'Grigor Dimitrov', 'bg', 'Bulgaria', 3740, 'pts', 'up'),
-(4, 10, 'Alex de Minaur', 'au', 'Australia', 3545, 'pts', 'down');
-
--- American Football (ID 5)
-INSERT INTO `teams` (`sport_id`, `rank_position`, `team_name`, `country_code`, `country_name`, `points`, `points_label`, `trend`) VALUES
-(5, 1, 'Kansas City Chiefs', 'us', 'USA', 100, 'index', 'same'),
-(5, 2, 'San Francisco 49ers', 'us', 'USA', 98, 'index', 'same'),
-(5, 3, 'Baltimore Ravens', 'us', 'USA', 95, 'index', 'up'),
-(5, 4, 'Detroit Lions', 'us', 'USA', 92, 'index', 'up'),
-(5, 5, 'Buffalo Bills', 'us', 'USA', 89, 'index', 'down'),
-(5, 6, 'Philadelphia Eagles', 'us', 'USA', 87, 'index', 'down'),
-(5, 7, 'Houston Texans', 'us', 'USA', 85, 'index', 'up'),
-(5, 8, 'Green Bay Packers', 'us', 'USA', 83, 'index', 'up'),
-(5, 9, 'Miami Dolphins', 'us', 'USA', 80, 'index', 'down'),
-(5, 10, 'Dallas Cowboys', 'us', 'USA', 78, 'index', 'down');
-
--- Field Hockey (ID 6)
-INSERT INTO `teams` (`sport_id`, `rank_position`, `team_name`, `country_code`, `country_name`, `points`, `points_label`, `trend`) VALUES
-(6, 1, 'Netherlands', 'nl', 'Netherlands', 3168, 'pts', 'same'),
-(6, 2, 'Germany', 'de', 'Germany', 3035, 'pts', 'up'),
-(6, 3, 'Belgium', 'be', 'Belgium', 2958, 'pts', 'down'),
-(6, 4, 'India', 'in', 'India', 2848, 'pts', 'up'),
-(6, 5, 'Australia', 'au', 'Australia', 2714, 'pts', 'down'),
-(6, 6, 'Argentina', 'ar', 'Argentina', 2642, 'pts', 'same'),
-(6, 7, 'England', 'gb', 'England', 2627, 'pts', 'same'),
-(6, 8, 'Spain', 'es', 'Spain', 2445, 'pts', 'same'),
-(6, 9, 'Ireland', 'ie', 'Ireland', 2090, 'pts', 'up'),
-(6, 10, 'France', 'fr', 'France', 2041, 'pts', 'up');
-
--- Volleyball (ID 7)
-INSERT INTO `teams` (`sport_id`, `rank_position`, `team_name`, `country_code`, `country_name`, `points`, `points_label`, `trend`) VALUES
-(7, 1, 'Poland', 'pl', 'Poland', 408.95, 'pts', 'same'),
-(7, 2, 'France', 'fr', 'France', 358.24, 'pts', 'up'),
-(7, 3, 'Slovenia', 'si', 'Slovenia', 348.63, 'pts', 'up'),
-(7, 4, 'Japan', 'jp', 'Japan', 344.29, 'pts', 'down'),
-(7, 5, 'Italy', 'it', 'Italy', 344.21, 'pts', 'down'),
-(7, 6, 'USA', 'us', 'United States', 343.78, 'pts', 'same'),
-(7, 7, 'Brazil', 'br', 'Brazil', 315.44, 'pts', 'down'),
-(7, 8, 'Argentina', 'ar', 'Argentina', 264.28, 'pts', 'same'),
-(7, 9, 'Canada', 'ca', 'Canada', 262.90, 'pts', 'up'),
-(7, 10, 'Germany', 'de', 'Germany', 262.02, 'pts', 'up');
-
--- Rugby Union (ID 8)
-INSERT INTO `teams` (`sport_id`, `rank_position`, `team_name`, `country_code`, `country_name`, `points`, `points_label`, `trend`) VALUES
-(8, 1, 'South Africa', 'za', 'South Africa', 93.94, 'pts', 'same'),
-(8, 2, 'Ireland', 'ie', 'Ireland', 90.33, 'pts', 'up'),
-(8, 3, 'New Zealand', 'nz', 'New Zealand', 89.41, 'pts', 'down'),
-(8, 4, 'France', 'fr', 'France', 87.97, 'pts', 'same'),
-(8, 5, 'England', 'gb', 'England', 87.24, 'pts', 'same'),
-(8, 6, 'Argentina', 'ar', 'Argentina', 84.97, 'pts', 'up'),
-(8, 7, 'Scotland', 'gb', 'Scotland', 82.90, 'pts', 'up'),
-(8, 8, 'Italy', 'it', 'Italy', 81.53, 'pts', 'up'),
-(8, 9, 'Fiji', 'fj', 'Fiji', 81.14, 'pts', 'down'),
-(8, 10, 'Australia', 'au', 'Australia', 79.64, 'pts', 'down');
-
--- Baseball (ID 9)
-INSERT INTO `teams` (`sport_id`, `rank_position`, `team_name`, `country_code`, `country_name`, `points`, `points_label`, `trend`) VALUES
-(9, 1, 'Japan', 'jp', 'Japan', 4899, 'pts', 'same'),
-(9, 2, 'Mexico', 'mx', 'Mexico', 4764, 'pts', 'up'),
-(9, 3, 'USA', 'us', 'United States', 4492, 'pts', 'down'),
-(9, 4, 'South Korea', 'kr', 'South Korea', 4350, 'pts', 'same'),
-(9, 5, 'Chinese Taipei', 'tw', 'Chinese Taipei', 4170, 'pts', 'same'),
-(9, 6, 'Venezuela', 've', 'Venezuela', 3975, 'pts', 'up'),
-(9, 7, 'Netherlands', 'nl', 'Netherlands', 3288, 'pts', 'down'),
-(9, 8, 'Cuba', 'cu', 'Cuba', 3121, 'pts', 'same'),
-(9, 9, 'Dominican Republic', 'do', 'Dominican Republic', 2667, 'pts', 'same'),
-(9, 10, 'Panama', 'pa', 'Panama', 2534, 'pts', 'up');
-
--- Ice Hockey (ID 10)
-INSERT INTO `teams` (`sport_id`, `rank_position`, `team_name`, `country_code`, `country_name`, `points`, `points_label`, `trend`) VALUES
-(10, 1, 'Canada', 'ca', 'Canada', 4100, 'pts', 'same'),
-(10, 2, 'Czechia', 'cz', 'Czechia', 4000, 'pts', 'up'),
-(10, 3, 'Switzerland', 'ch', 'Switzerland', 3900, 'pts', 'up'),
-(10, 4, 'Finland', 'fi', 'Finland', 3800, 'pts', 'down'),
-(10, 5, 'Sweden', 'se', 'Sweden', 3700, 'pts', 'down'),
-(10, 6, 'USA', 'us', 'United States', 3600, 'pts', 'same'),
-(10, 7, 'Germany', 'de', 'Germany', 3500, 'pts', 'same'),
-(10, 8, 'Slovakia', 'sk', 'Slovakia', 3400, 'pts', 'up'),
-(10, 9, 'Latvia', 'lv', 'Latvia', 3300, 'pts', 'down'),
-(10, 10, 'Denmark', 'dk', 'Denmark', 3200, 'pts', 'up');
+INSERT INTO `teams` (`sport_id`, `rank_position`, `team_name`, `team_type`, `country_code`, `points`, `points_label`, `trend`) VALUES
+(1, 1, 'Argentina', 'national', 'ar', 1883.5, 'pts', 'same'),
+(1, 2, 'France', 'national', 'fr', 1853.11, 'pts', 'same'),
+(1, 3, 'Spain', 'national', 'es', 1844.33, 'pts', 'same'),
+(1, 4, 'England', 'national', 'gb', 1807.83, 'pts', 'same'),
+(1, 5, 'Brazil', 'national', 'br', 1784.37, 'pts', 'same'),
+(1, 6, 'Belgium', 'national', 'be', 1761.27, 'pts', 'same'),
+(1, 7, 'Portugal', 'national', 'pt', 1752.68, 'pts', 'same'),
+(1, 8, 'Netherlands', 'national', 'nl', 1748.24, 'pts', 'same'),
+(1, 9, 'Italy', 'national', 'it', 1729.4, 'pts', 'same'),
+(1, 10, 'Colombia', 'national', 'co', 1724.37, 'pts', 'same'),
+(1, 1, 'Real Madrid', 'club', 'es', 2500, 'pts', 'same'),
+(1, 2, 'Manchester City', 'club', 'gb', 2480, 'pts', 'same'),
+(1, 3, 'Liverpool', 'club', 'gb', 2420, 'pts', 'same'),
+(1, 4, 'Bayer Leverkusen', 'club', 'de', 2380, 'pts', 'same'),
+(1, 5, 'Inter Milan', 'club', 'it', 2350, 'pts', 'same'),
+(1, 6, 'Arsenal', 'club', 'gb', 2330, 'pts', 'same'),
+(1, 7, 'Bayern Munich', 'club', 'de', 2310, 'pts', 'same'),
+(1, 8, 'Barcelona', 'club', 'es', 2280, 'pts', 'same'),
+(1, 9, 'Paris Saint-Germain', 'club', 'fr', 2250, 'pts', 'same'),
+(1, 10, 'Borussia Dortmund', 'club', 'de', 2220, 'pts', 'same'),
+(2, 1, 'USA', 'national', 'us', 838.8, 'pts', 'same'),
+(2, 2, 'Serbia', 'national', 'rs', 758.2, 'pts', 'same'),
+(2, 3, 'Germany', 'national', 'de', 755.9, 'pts', 'same'),
+(2, 4, 'France', 'national', 'fr', 753, 'pts', 'same'),
+(2, 5, 'Canada', 'national', 'ca', 747.8, 'pts', 'same'),
+(2, 6, 'Spain', 'national', 'es', 746.7, 'pts', 'same'),
+(2, 7, 'Australia', 'national', 'au', 732.5, 'pts', 'same'),
+(2, 8, 'Argentina', 'national', 'ar', 731.1, 'pts', 'same'),
+(2, 9, 'Latvia', 'national', 'lv', 711.4, 'pts', 'same'),
+(2, 10, 'Lithuania', 'national', 'lt', 698.9, 'pts', 'same'),
+(2, 1, 'Boston Celtics', 'club', 'us', 100, 'pts', 'same'),
+(2, 2, 'Denver Nuggets', 'club', 'us', 98, 'pts', 'same'),
+(2, 3, 'Real Madrid', 'club', 'es', 95, 'pts', 'same'),
+(2, 4, 'Panathinaikos', 'club', 'gr', 94, 'pts', 'same'),
+(2, 5, 'Dallas Mavericks', 'club', 'us', 93, 'pts', 'same'),
+(2, 6, 'Minnesota Timberwolves', 'club', 'us', 92, 'pts', 'same'),
+(2, 7, 'Olympiacos', 'club', 'gr', 91, 'pts', 'same'),
+(2, 8, 'Fenerbahce', 'club', 'tr', 90, 'pts', 'same'),
+(2, 9, 'Monaco', 'club', 'fr', 89, 'pts', 'same'),
+(2, 10, 'Oklahoma City Thunder', 'club', 'us', 88, 'pts', 'same'),
+(3, 1, 'India', 'national', 'in', 122, 'pts', 'same'),
+(3, 2, 'Australia', 'national', 'au', 116, 'pts', 'same'),
+(3, 3, 'South Africa', 'national', 'za', 108, 'pts', 'same'),
+(3, 4, 'Pakistan', 'national', 'pk', 106, 'pts', 'same'),
+(3, 5, 'New Zealand', 'national', 'nz', 101, 'pts', 'same'),
+(3, 6, 'Sri Lanka', 'national', 'lk', 97, 'pts', 'same'),
+(3, 7, 'England', 'national', 'gb', 95, 'pts', 'same'),
+(3, 8, 'Bangladesh', 'national', 'bd', 86, 'pts', 'same'),
+(3, 9, 'Afghanistan', 'national', 'af', 82, 'pts', 'same'),
+(3, 10, 'West Indies', 'national', 'wi', 75, 'pts', 'same'),
+(3, 1, 'Kolkata Knight Riders', 'club', 'in', 95, 'pts', 'same'),
+(3, 2, 'Sunrisers Hyderabad', 'club', 'in', 92, 'pts', 'same'),
+(3, 3, 'Rajasthan Royals', 'club', 'in', 90, 'pts', 'same'),
+(3, 4, 'Royal Challengers Bengaluru', 'club', 'in', 88, 'pts', 'same'),
+(3, 5, 'Chennai Super Kings', 'club', 'in', 87, 'pts', 'same'),
+(3, 6, 'Perth Scorchers', 'club', 'au', 85, 'pts', 'same'),
+(3, 7, 'Sydney Sixers', 'club', 'au', 84, 'pts', 'same'),
+(3, 8, 'Surrey', 'club', 'gb', 82, 'pts', 'same'),
+(3, 9, 'Somerset', 'club', 'gb', 81, 'pts', 'same'),
+(3, 10, 'MI Cape Town', 'club', 'za', 80, 'pts', 'same'),
+(4, 1, 'Jannik Sinner', 'national', 'it', 11830, 'pts', 'same'),
+(4, 2, 'Carlos Alcaraz', 'national', 'es', 7120, 'pts', 'same'),
+(4, 3, 'Alexander Zverev', 'national', 'de', 6805, 'pts', 'same'),
+(4, 4, 'Novak Djokovic', 'national', 'rs', 6210, 'pts', 'same'),
+(4, 5, 'Daniil Medvedev', 'national', 'ru', 5230, 'pts', 'same'),
+(4, 6, 'Taylor Fritz', 'national', 'us', 4415, 'pts', 'same'),
+(4, 7, 'Andrey Rublev', 'national', 'ru', 4070, 'pts', 'same'),
+(4, 8, 'Casper Ruud', 'national', 'no', 3855, 'pts', 'same'),
+(4, 9, 'Grigor Dimitrov', 'national', 'bg', 3740, 'pts', 'same'),
+(4, 10, 'Alex de Minaur', 'national', 'au', 3545, 'pts', 'same'),
+(4, 1, 'Sinner Academy', 'club', 'it', 11830, 'pts', 'same'),
+(4, 2, 'Alcaraz Team', 'club', 'es', 7120, 'pts', 'same'),
+(4, 3, 'Zverev Base', 'club', 'de', 6805, 'pts', 'same'),
+(4, 4, 'Djokovic Center', 'club', 'rs', 6210, 'pts', 'same'),
+(4, 5, 'Medvedev Camp', 'club', 'ru', 5230, 'pts', 'same'),
+(4, 6, 'Fritz Pro', 'club', 'us', 4415, 'pts', 'same'),
+(4, 7, 'Rublev Elite', 'club', 'ru', 4070, 'pts', 'same'),
+(4, 8, 'Ruud Club', 'club', 'no', 3855, 'pts', 'same'),
+(4, 9, 'Dimitrov Squad', 'club', 'bg', 3740, 'pts', 'same'),
+(4, 10, 'De Minaur High', 'club', 'au', 3545, 'pts', 'same'),
+(5, 1, 'Kansas City Chiefs', 'national', 'us', 100, 'pts', 'same'),
+(5, 2, 'San Francisco 49ers', 'national', 'us', 98, 'pts', 'same'),
+(5, 3, 'Baltimore Ravens', 'national', 'us', 95, 'pts', 'same'),
+(5, 4, 'Detroit Lions', 'national', 'us', 92, 'pts', 'same'),
+(5, 5, 'Buffalo Bills', 'national', 'us', 89, 'pts', 'same'),
+(5, 6, 'Philadelphia Eagles', 'national', 'us', 87, 'pts', 'same'),
+(5, 7, 'Houston Texans', 'national', 'us', 85, 'pts', 'same'),
+(5, 8, 'Green Bay Packers', 'national', 'us', 83, 'pts', 'same'),
+(5, 9, 'Miami Dolphins', 'national', 'us', 80, 'pts', 'same'),
+(5, 10, 'Dallas Cowboys', 'national', 'us', 78, 'pts', 'same'),
+(5, 1, 'Kansas City Chiefs', 'club', 'us', 100, 'pts', 'same'),
+(5, 2, 'Baltimore Ravens', 'club', 'us', 98, 'pts', 'same'),
+(5, 3, 'Detroit Lions', 'club', 'us', 95, 'pts', 'same'),
+(5, 4, 'San Francisco 49ers', 'club', 'us', 94, 'pts', 'same'),
+(5, 5, 'Buffalo Bills', 'club', 'us', 93, 'pts', 'same'),
+(5, 6, 'Houston Texans', 'club', 'us', 92, 'pts', 'same'),
+(5, 7, 'Philadelphia Eagles', 'club', 'us', 91, 'pts', 'same'),
+(5, 8, 'Green Bay Packers', 'club', 'us', 90, 'pts', 'same'),
+(5, 9, 'Dallas Cowboys', 'club', 'us', 88, 'pts', 'same'),
+(5, 10, 'Cincinnati Bengals', 'club', 'us', 87, 'pts', 'same'),
+(6, 1, 'Netherlands', 'national', 'nl', 3168, 'pts', 'same'),
+(6, 2, 'Germany', 'national', 'de', 3035, 'pts', 'same'),
+(6, 3, 'Belgium', 'national', 'be', 2958, 'pts', 'same'),
+(6, 4, 'India', 'national', 'in', 2848, 'pts', 'same'),
+(6, 5, 'Australia', 'national', 'au', 2714, 'pts', 'same'),
+(6, 6, 'Argentina', 'national', 'ar', 2642, 'pts', 'same'),
+(6, 7, 'England', 'national', 'gb', 2627, 'pts', 'same'),
+(6, 8, 'Spain', 'national', 'es', 2445, 'pts', 'same'),
+(6, 9, 'Ireland', 'national', 'ie', 2090, 'pts', 'same'),
+(6, 10, 'France', 'national', 'fr', 2041, 'pts', 'same'),
+(6, 1, 'Kampong', 'club', 'nl', 100, 'pts', 'same'),
+(6, 2, 'Rot-Weiss Koln', 'club', 'de', 98, 'pts', 'same'),
+(6, 3, 'Bloemendaal', 'club', 'nl', 96, 'pts', 'same'),
+(6, 4, 'Gantoise', 'club', 'be', 94, 'pts', 'same'),
+(6, 5, 'Old Georgians', 'club', 'gb', 92, 'pts', 'same'),
+(6, 6, 'Club de Campo', 'club', 'es', 90, 'pts', 'same'),
+(6, 7, 'Mannheimer HC', 'club', 'de', 88, 'pts', 'same'),
+(6, 8, 'Waterloo Ducks', 'club', 'be', 86, 'pts', 'same'),
+(6, 9, 'Pinoke', 'club', 'nl', 84, 'pts', 'same'),
+(6, 10, 'Surbiton', 'club', 'gb', 82, 'pts', 'same'),
+(7, 1, 'Poland', 'national', 'pl', 408.95, 'pts', 'same'),
+(7, 2, 'France', 'national', 'fr', 358.24, 'pts', 'same'),
+(7, 3, 'Slovenia', 'national', 'si', 348.63, 'pts', 'same'),
+(7, 4, 'Japan', 'national', 'jp', 344.29, 'pts', 'same'),
+(7, 5, 'Italy', 'national', 'it', 344.21, 'pts', 'same'),
+(7, 6, 'USA', 'national', 'us', 343.78, 'pts', 'same'),
+(7, 7, 'Brazil', 'national', 'br', 315.44, 'pts', 'same'),
+(7, 8, 'Argentina', 'national', 'ar', 264.28, 'pts', 'same'),
+(7, 9, 'Canada', 'national', 'ca', 262.9, 'pts', 'same'),
+(7, 10, 'Germany', 'national', 'de', 262.02, 'pts', 'same'),
+(7, 1, 'Trentino Itas', 'club', 'it', 100, 'pts', 'same'),
+(7, 2, 'Jastrzebski Wegiel', 'club', 'pl', 98, 'pts', 'same'),
+(7, 3, 'Perugia', 'club', 'it', 96, 'pts', 'same'),
+(7, 4, 'Ziraat Bankasi', 'club', 'tr', 94, 'pts', 'same'),
+(7, 5, 'Lube Civitanova', 'club', 'it', 92, 'pts', 'same'),
+(7, 6, 'Halkbank', 'club', 'tr', 90, 'pts', 'same'),
+(7, 7, 'Zaksa Kedzierzyn-Kozle', 'club', 'pl', 88, 'pts', 'same'),
+(7, 8, 'Sada Cruzeiro', 'club', 'br', 86, 'pts', 'same'),
+(7, 9, 'Guaguas', 'club', 'es', 84, 'pts', 'same'),
+(7, 10, 'Berlin RV', 'club', 'de', 82, 'pts', 'same'),
+(8, 1, 'South Africa', 'national', 'za', 93.94, 'pts', 'same'),
+(8, 2, 'Ireland', 'national', 'ie', 90.33, 'pts', 'same'),
+(8, 3, 'New Zealand', 'national', 'nz', 89.41, 'pts', 'same'),
+(8, 4, 'France', 'national', 'fr', 87.97, 'pts', 'same'),
+(8, 5, 'England', 'national', 'gb', 87.24, 'pts', 'same'),
+(8, 6, 'Argentina', 'national', 'ar', 84.97, 'pts', 'same'),
+(8, 7, 'Scotland', 'national', 'gb', 82.9, 'pts', 'same'),
+(8, 8, 'Italy', 'national', 'it', 81.53, 'pts', 'same'),
+(8, 9, 'Fiji', 'national', 'fj', 81.14, 'pts', 'same'),
+(8, 10, 'Australia', 'national', 'au', 79.64, 'pts', 'same'),
+(8, 1, 'Toulouse', 'club', 'fr', 100, 'pts', 'same'),
+(8, 2, 'Leinster', 'club', 'ie', 98, 'pts', 'same'),
+(8, 3, 'Northampton Saints', 'club', 'gb', 95, 'pts', 'same'),
+(8, 4, 'Bulls', 'club', 'za', 93, 'pts', 'same'),
+(8, 5, 'La Rochelle', 'club', 'fr', 92, 'pts', 'same'),
+(8, 6, 'Munster', 'club', 'ie', 90, 'pts', 'same'),
+(8, 7, 'Saracens', 'club', 'gb', 88, 'pts', 'same'),
+(8, 8, 'Glasgow Warriors', 'club', 'gb', 87, 'pts', 'same'),
+(8, 9, 'Harlequins', 'club', 'gb', 85, 'pts', 'same'),
+(8, 10, 'Stormers', 'club', 'za', 84, 'pts', 'same'),
+(9, 1, 'Japan', 'national', 'jp', 4899, 'pts', 'same'),
+(9, 2, 'Mexico', 'national', 'mx', 4764, 'pts', 'same'),
+(9, 3, 'USA', 'national', 'us', 4492, 'pts', 'same'),
+(9, 4, 'South Korea', 'national', 'kr', 4350, 'pts', 'same'),
+(9, 5, 'Chinese Taipei', 'national', 'tw', 4170, 'pts', 'same'),
+(9, 6, 'Venezuela', 'national', 've', 3975, 'pts', 'same'),
+(9, 7, 'Netherlands', 'national', 'nl', 3288, 'pts', 'same'),
+(9, 8, 'Cuba', 'national', 'cu', 3121, 'pts', 'same'),
+(9, 9, 'Dominican Republic', 'national', 'do', 2667, 'pts', 'same'),
+(9, 10, 'Panama', 'national', 'pa', 2534, 'pts', 'same'),
+(9, 1, 'Los Angeles Dodgers', 'club', 'us', 100, 'pts', 'same'),
+(9, 2, 'Philadelphia Phillies', 'club', 'us', 97, 'pts', 'same'),
+(9, 3, 'New York Yankees', 'club', 'us', 95, 'pts', 'same'),
+(9, 4, 'Baltimore Orioles', 'club', 'us', 93, 'pts', 'same'),
+(9, 5, 'Cleveland Guardians', 'club', 'us', 91, 'pts', 'same'),
+(9, 6, 'Milwaukee Brewers', 'club', 'us', 89, 'pts', 'same'),
+(9, 7, 'Atlanta Braves', 'club', 'us', 87, 'pts', 'same'),
+(9, 8, 'Houston Astros', 'club', 'us', 85, 'pts', 'same'),
+(9, 9, 'Yomiuri Giants', 'club', 'jp', 83, 'pts', 'same'),
+(9, 10, 'Hanshin Tigers', 'club', 'jp', 81, 'pts', 'same'),
+(10, 1, 'Canada', 'national', 'ca', 4100, 'pts', 'same'),
+(10, 2, 'Czechia', 'national', 'cz', 4000, 'pts', 'same'),
+(10, 3, 'Switzerland', 'national', 'ch', 3900, 'pts', 'same'),
+(10, 4, 'Finland', 'national', 'fi', 3800, 'pts', 'same'),
+(10, 5, 'Sweden', 'national', 'se', 3700, 'pts', 'same'),
+(10, 6, 'USA', 'national', 'us', 3600, 'pts', 'same'),
+(10, 7, 'Germany', 'national', 'de', 3500, 'pts', 'same'),
+(10, 8, 'Slovakia', 'national', 'sk', 3400, 'pts', 'same'),
+(10, 9, 'Latvia', 'national', 'lv', 3300, 'pts', 'same'),
+(10, 10, 'Denmark', 'national', 'dk', 3200, 'pts', 'same'),
+(10, 1, 'Florida Panthers', 'club', 'us', 100, 'pts', 'same'),
+(10, 2, 'Edmonton Oilers', 'club', 'ca', 98, 'pts', 'same'),
+(10, 3, 'New York Rangers', 'club', 'us', 96, 'pts', 'same'),
+(10, 4, 'Dallas Stars', 'club', 'us', 94, 'pts', 'same'),
+(10, 5, 'Carolina Hurricanes', 'club', 'us', 92, 'pts', 'same'),
+(10, 6, 'Vancouver Canucks', 'club', 'ca', 90, 'pts', 'same'),
+(10, 7, 'Colorado Avalanche', 'club', 'us', 88, 'pts', 'same'),
+(10, 8, 'Boston Bruins', 'club', 'us', 86, 'pts', 'same'),
+(10, 9, 'ZSC Lions', 'club', 'ch', 84, 'pts', 'same'),
+(10, 10, 'Skelleftea AIK', 'club', 'se', 82, 'pts', 'same');
 
 -- --------------------------------------------------------
 
@@ -216,7 +297,7 @@ INSERT INTO `teams` (`sport_id`, `rank_position`, `team_name`, `country_code`, `
 -- Table structure for table `site_settings`
 --
 
-CREATE TABLE IF NOT EXISTS `site_settings` (
+CREATE TABLE `site_settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `setting_key` varchar(100) NOT NULL,
   `setting_value` text DEFAULT NULL,
@@ -245,7 +326,7 @@ INSERT INTO `site_settings` (`setting_key`, `setting_value`, `setting_group`) VA
 -- Table structure for table `admin_users`
 --
 
-CREATE TABLE IF NOT EXISTS `admin_users` (
+CREATE TABLE `admin_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(100) NOT NULL,
   `password_hash` varchar(255) NOT NULL,
@@ -269,7 +350,7 @@ INSERT INTO `admin_users` (`username`, `password_hash`, `email`) VALUES
 -- Table structure for table `activity_log`
 --
 
-CREATE TABLE IF NOT EXISTS `activity_log` (
+CREATE TABLE `activity_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
   `action` text DEFAULT NULL,

@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
             data: {
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
                 datasets: [{
-                    label: '<?php echo $teams[0]['team_name']; ?>',
+                    label: '<?php echo !empty($teams) ? $teams[0]['team_name'] : "Ranking History"; ?>',
                     data: [2, 1, 1, 2, 1],
                     borderColor: '#F0A500',
                     backgroundColor: 'rgba(240, 165, 0, 0.1)',
