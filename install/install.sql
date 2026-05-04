@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `teams` (
   `is_active` tinyint(1) DEFAULT 1,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
-  UNIQUE KEY `sport_rank` (`sport_id`,`rank_position`),
+  UNIQUE KEY `sport_rank` (`sport_id`,`rank_position`,`team_type`),
   KEY `sport_id` (`sport_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

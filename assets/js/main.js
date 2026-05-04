@@ -3,12 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const counters = document.querySelectorAll('.stat-counter');
     counters.forEach(counter => {
         const target = parseInt(counter.getAttribute('data-target'));
-        const countUp = new countUp.CountUp(counter, target, {
+        const countUpAnim = new countUp.CountUp(counter, target, {
             duration: 2,
             useEasing: true
         });
-        if (!countUp.error) {
-            countUp.start();
+        if (!countUpAnim.error) {
+            countUpAnim.start();
         }
     });
 
@@ -16,13 +16,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const pointsCounters = document.querySelectorAll('.points-counter');
     pointsCounters.forEach(counter => {
         const target = parseInt(counter.getAttribute('data-target'));
-        const countUp = new countUp.CountUp(counter, target, {
+        const countUpAnim = new countUp.CountUp(counter, target, {
             duration: 1.5,
             useEasing: true,
             separator: ','
         });
-        if (!countUp.error) {
-            countUp.start();
+        if (!countUpAnim.error) {
+            countUpAnim.start();
         }
     });
 
