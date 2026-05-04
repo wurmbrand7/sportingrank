@@ -52,6 +52,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     setTimeout(() => card.style.display = 'none', 300);
                 }
             });
+
+            // Scroll to rankings section if user is on homepage
+            const rankingsSection = document.getElementById('rankings');
+            if (rankingsSection) {
+                window.scrollTo({
+                    top: rankingsSection.offsetTop - 150,
+                    behavior: 'smooth'
+                });
+            }
         });
     });
 

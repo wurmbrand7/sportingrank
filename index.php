@@ -46,10 +46,14 @@ $sports = get_active_sports();
 <div class="sticky top-[73px] z-40 bg-primary/95 backdrop-blur-sm border-y border-border py-4">
     <div class="container mx-auto px-4">
         <div class="flex items-center space-x-2 overflow-x-auto no-scrollbar pb-1">
-            <button class="sport-filter-btn px-6 py-2 rounded-full font-heading font-black uppercase text-xs tracking-widest transition whitespace-nowrap bg-accent text-primary" data-filter="all">All Sports</button>
+            <button class="sport-filter-btn flex items-center space-x-2 px-6 py-2 rounded-full font-heading font-black uppercase text-xs tracking-widest transition whitespace-nowrap bg-accent text-primary" data-filter="all">
+                <span>🌎</span>
+                <span>All Sports</span>
+            </button>
             <?php foreach ($sports as $sport): ?>
-                <button class="sport-filter-btn px-6 py-2 rounded-full font-heading font-black uppercase text-xs tracking-widest transition whitespace-nowrap bg-card text-[#EEEEFF] border border-border hover:border-accent" data-filter="<?php echo e($sport['slug']); ?>">
-                    <?php echo e($sport['name']); ?>
+                <button class="sport-filter-btn flex items-center space-x-2 px-6 py-2 rounded-full font-heading font-black uppercase text-xs tracking-widest transition whitespace-nowrap bg-card text-[#EEEEFF] border border-border hover:border-accent" data-filter="<?php echo e($sport['slug']); ?>">
+                    <span><?php echo e($sport['icon'] ?? '🏆'); ?></span>
+                    <span><?php echo e($sport['name']); ?></span>
                 </button>
             <?php endforeach; ?>
         </div>
