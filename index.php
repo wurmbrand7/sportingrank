@@ -44,8 +44,12 @@ $sports = get_active_sports();
 
 <!-- Sports Filter Tabs -->
 <div class="sticky top-[73px] z-40 bg-primary/95 backdrop-blur-sm border-y border-border py-4">
-    <div class="container mx-auto px-4">
-        <div class="flex items-center space-x-2 overflow-x-auto no-scrollbar pb-1">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="flex items-center space-x-4 bg-card p-1 rounded-full border border-border">
+            <button onclick="setTeamType('national')" id="type-national" class="type-filter-btn px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition bg-accent text-primary">National</button>
+            <button onclick="setTeamType('club')" id="type-club" class="type-filter-btn px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition text-muted hover:text-white">Leagues</button>
+        </div>
+        <div class="flex items-center space-x-2 overflow-x-auto no-scrollbar pb-1 w-full md:w-auto">
             <button class="sport-filter-btn flex items-center space-x-2 px-6 py-2 rounded-full font-heading font-black uppercase text-xs tracking-widest transition whitespace-nowrap bg-accent text-primary" data-filter="all">
                 <span>🌎</span>
                 <span>All Sports</span>
@@ -63,10 +67,11 @@ $sports = get_active_sports();
 <!-- Rankings Grid -->
 <section id="rankings" class="py-20">
     <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div id="rankings-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <?php foreach ($sports as $sport): ?>
                 <?php
-                    $teams = get_top_teams($sport['id']);
+                    $national_teams = get_top_teams($sport['id'], 10, 'national');
+                    $club_teams = get_top_teams($sport['id'], 10, 'club');
                 ?>
                 <div class="sport-ranking-card" data-sport="<?php echo e($sport['slug']); ?>">
                     <div class="glass-card rounded-xl overflow-hidden border border-border">
@@ -97,17 +102,35 @@ $sports = get_active_sports();
                                         <th class="py-2 px-4 text-center">Vote</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <?php foreach ($teams as $team): ?>
-                                        <?php
-                                            $rank_class = '';
-                                            if ($team['rank_position'] == 1) $rank_class = 'rank-1';
-                                            elseif ($team['rank_position'] == 2) $rank_class = 'rank-2';
-                                            elseif ($team['rank_position'] == 3) $rank_class = 'rank-3';
-                                        ?>
+                                <tbody class="teams-tbody-national">
+                                    <?php foreach ($national_teams as $team): ?>
                                         <tr class="border-b border-border/30 last:border-0 hover:bg-white/5 transition">
                                             <td class="py-3 px-4">
-                                                <span class="rank-badge <?php echo $rank_class; ?>"><?php echo $team['rank_position']; ?></span>
+                                                <span class="rank-badge <?php echo $team['rank_position'] <= 3 ? 'rank-'.$team['rank_position'] : ''; ?>"><?php echo $team['rank_position']; ?></span>
+                                            </td>
+                                            <td class="py-3 px-2">
+                                                <div class="flex items-center space-x-3">
+                                                    <img src="https://flagcdn.com/24x18/<?php echo strtolower($team['country_code']); ?>.png" alt="" class="rounded-sm">
+                                                    <span class="font-bold text-sm"><?php echo e($team['team_name']); ?></span>
+                                                </div>
+                                            </td>
+                                            <td class="py-3 px-4 text-right font-heading font-black text-accent italic">
+                                                <span class="points-counter" data-target="<?php echo (int)$team['points']; ?>">0</span> <span class="text-[8px] italic opacity-50"><?php echo e($team['points_label']); ?></span>
+                                            </td>
+                                            <td class="py-3 px-4 text-center">
+                                                <?php echo format_trend($team['trend']); ?>
+                                            </td>
+                                            <td class="py-3 px-4 text-center">
+                                                <button onclick="voteForTeam(<?php echo $team['id']; ?>, '<?php echo e($team['team_name']); ?>')" class="text-[10px] bg-accent/10 hover:bg-accent text-accent hover:text-primary border border-accent/30 px-2 py-1 rounded transition font-black uppercase">Vote</button>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                                <tbody class="teams-tbody-club" class="hidden">
+                                    <?php foreach ($club_teams as $team): ?>
+                                        <tr class="border-b border-border/30 last:border-0 hover:bg-white/5 transition">
+                                            <td class="py-3 px-4">
+                                                <span class="rank-badge <?php echo $team['rank_position'] <= 3 ? 'rank-'.$team['rank_position'] : ''; ?>"><?php echo $team['rank_position']; ?></span>
                                             </td>
                                             <td class="py-3 px-2">
                                                 <div class="flex items-center space-x-3">

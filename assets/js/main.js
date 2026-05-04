@@ -64,18 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Sticky Navbar transparency
-    const nav = document.querySelector('nav');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            nav.classList.add('bg-primary/95', 'shadow-2xl');
-            nav.classList.remove('bg-primary/80');
-        } else {
-            nav.classList.add('bg-primary/80');
-            nav.classList.remove('bg-primary/95', 'shadow-2xl');
-        }
-    });
-
     // Live Search Logic
     const searchInput = document.getElementById('site-search');
     if (searchInput) {
@@ -154,6 +142,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 5000);
     }
 });
+
+function setTeamType(type) {
+    const nationalBtns = document.querySelectorAll('.type-filter-btn');
+    nationalBtns.forEach(btn => {
+        btn.classList.remove('bg-accent', 'text-primary');
+        btn.classList.add('text-muted');
+    });
+
+    const activeBtn = document.getElementById('type-' + type);
+    activeBtn.classList.add('bg-accent', 'text-primary');
+    activeBtn.classList.remove('text-muted');
+
+    const nationalBodies = document.querySelectorAll('.teams-tbody-national');
+    const clubBodies = document.querySelectorAll('.teams-tbody-club');
+
+    if (type === 'national') {
+        nationalBodies.forEach(b => b.classList.remove('hidden'));
+        clubBodies.forEach(b => b.classList.add('hidden'));
+    } else {
+        nationalBodies.forEach(b => b.classList.add('hidden'));
+        clubBodies.forEach(b => b.classList.remove('hidden'));
+    }
+}
 
 function voteForTeam(teamId, teamName) {
     fetch('ajax/vote.php', {

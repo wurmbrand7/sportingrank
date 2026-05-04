@@ -5,6 +5,7 @@ require_once __DIR__ . '/../includes/functions.php';
 require_login();
 
 $sport_id = (int)($_GET['sport_id'] ?? ($pdo->query("SELECT id FROM sports LIMIT 1")->fetchColumn() ?: 0));
+$team_type = $_GET['team_type'] ?? 'national';
 $sports = $pdo->query("SELECT id, name FROM sports ORDER BY sort_order ASC")->fetchAll();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -21,8 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sport_id = (int)$_POST['sport_id'];
 
         if ($action === 'add') {
-            $stmt = $pdo->prepare("INSERT INTO teams (sport_id, rank_position, team_name, country_code, points) VALUES (?, ?, ?, ?, ?)");
-            $stmt->execute([$sport_id, $rank_position, $team_name, $country_code, $points]);
+            $stmt = $pdo->prepare("INSERT INTO teams (sport_id, rank_position, team_name, country_code, points, team_type) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$sport_id, $rank_position, $team_name, $country_code, $points, $team_type]);
             $msg = "Added team: " . $team_name;
         } else {
             $id = (int)$_POST['id'];
@@ -32,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $pdo->prepare("INSERT INTO activity_log (user_id, action) VALUES (?, ?)")->execute([$_SESSION[ADMIN_SESSION_NAME]['id'], $msg]);
-        header("Location: manage-teams.php?sport_id=$sport_id&success=1");
+        header("Location: manage-teams.php?sport_id=$sport_id&team_type=$team_type&success=1");
         exit;
     }
 
@@ -40,13 +41,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $id = (int)$_POST['id'];
         $stmt = $pdo->prepare("DELETE FROM teams WHERE id = ?");
         $stmt->execute([$id]);
-        header("Location: manage-teams.php?sport_id=$sport_id&success=1");
+        header("Location: manage-teams.php?sport_id=$sport_id&team_type=$team_type&success=1");
         exit;
     }
 }
 
-$teams = $pdo->prepare("SELECT * FROM teams WHERE sport_id = ? ORDER BY rank_position ASC");
-$teams->execute([$sport_id]);
+$teams = $pdo->prepare("SELECT * FROM teams WHERE sport_id = ? AND team_type = ? ORDER BY rank_position ASC");
+$teams->execute([$sport_id, $team_type]);
 $teams = $teams->fetchAll();
 ?>
 <!DOCTYPE html>
@@ -79,11 +80,15 @@ $teams = $teams->fetchAll();
         <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
             <div>
                 <h1 class="text-3xl font-black uppercase italic tracking-tighter">Manage Rankings</h1>
-                <div class="mt-2">
-                    <select onchange="window.location.href='?sport_id=' + this.value" class="form-input !w-auto text-xs font-bold uppercase">
+                <div class="mt-2 flex space-x-4">
+                    <select onchange="window.location.href='?team_type=<?php echo $team_type; ?>&sport_id=' + this.value" class="form-input !w-auto text-xs font-bold uppercase">
                         <?php foreach ($sports as $s): ?>
                             <option value="<?php echo $s['id']; ?>" <?php echo $s['id'] == $sport_id ? 'selected' : ''; ?>><?php echo e($s['name']); ?></option>
                         <?php endforeach; ?>
+                    </select>
+                    <select onchange="window.location.href='?sport_id=<?php echo $sport_id; ?>&team_type=' + this.value" class="form-input !w-auto text-xs font-bold uppercase">
+                        <option value="national" <?php echo $team_type == 'national' ? 'selected' : ''; ?>>National</option>
+                        <option value="club" <?php echo $team_type == 'club' ? 'selected' : ''; ?>>Leagues</option>
                     </select>
                 </div>
             </div>

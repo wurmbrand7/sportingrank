@@ -55,6 +55,7 @@ CREATE TABLE IF NOT EXISTS `teams` (
   `sport_id` int(11) NOT NULL,
   `rank_position` int(11) NOT NULL,
   `team_name` varchar(150) NOT NULL,
+  `team_type` enum('national','club') DEFAULT 'national',
   `country_code` char(2) DEFAULT NULL,
   `country_name` varchar(100) DEFAULT NULL,
   `points` decimal(10,2) DEFAULT 0.00,

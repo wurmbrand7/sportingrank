@@ -11,7 +11,8 @@ if (!$sport) {
     exit;
 }
 
-$teams = get_top_teams($sport['id'], 50);
+$type = $_GET['type'] ?? 'national';
+$teams = get_top_teams($sport['id'], 50, $type);
 ?>
 
 <!-- Sport Hero -->
@@ -22,6 +23,12 @@ $teams = get_top_teams($sport['id'], 50);
     </div>
 
     <div class="container mx-auto px-4 relative z-10 text-center">
+        <div class="flex justify-center mb-8">
+            <div class="flex items-center space-x-4 bg-card p-1 rounded-full border border-border">
+                <a href="?slug=<?php echo $slug; ?>&type=national" class="px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition <?php echo $type === 'national' ? 'bg-accent text-primary' : 'text-muted hover:text-white'; ?>">National</a>
+                <a href="?slug=<?php echo $slug; ?>&type=club" class="px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition <?php echo $type === 'club' ? 'bg-accent text-primary' : 'text-muted hover:text-white'; ?>">Leagues</a>
+            </div>
+        </div>
         <div class="inline-flex items-center space-x-2 bg-accent/20 text-accent px-4 py-1 rounded-full border border-accent/30 text-xs font-black uppercase tracking-widest mb-6">
             <span><?php echo e($sport['governing_body']); ?> Official Ranking</span>
         </div>
