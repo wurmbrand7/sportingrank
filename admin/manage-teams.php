@@ -20,15 +20,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $points = (float)$_POST['points'];
         $country_code = $_POST['country_code'];
         $sport_id = (int)$_POST['sport_id'];
+        $trend = $_POST['trend'] ?? 'same';
 
         if ($action === 'add') {
-            $stmt = $pdo->prepare("INSERT INTO teams (sport_id, rank_position, team_name, country_code, points, team_type) VALUES (?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$sport_id, $rank_position, $team_name, $country_code, $points, $team_type]);
+            $stmt = $pdo->prepare("INSERT INTO teams (sport_id, rank_position, team_name, country_code, points, team_type, trend) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$sport_id, $rank_position, $team_name, $country_code, $points, $team_type, $trend]);
             $msg = "Added team: " . $team_name;
         } else {
             $id = (int)$_POST['id'];
-            $stmt = $pdo->prepare("UPDATE teams SET rank_position = ?, team_name = ?, country_code = ?, points = ? WHERE id = ?");
-            $stmt->execute([$rank_position, $team_name, $country_code, $points, $id]);
+            $stmt = $pdo->prepare("UPDATE teams SET rank_position = ?, team_name = ?, country_code = ?, points = ?, trend = ? WHERE id = ?");
+            $stmt->execute([$rank_position, $team_name, $country_code, $points, $trend, $id]);
             $msg = "Updated team: " . $team_name;
         }
 
@@ -155,6 +156,14 @@ $teams = $teams->fetchAll();
                             <label class="block text-[10px] font-black uppercase tracking-widest text-[#7A8AAA] mb-1">Country Code (e.g. us)</label>
                             <input type="text" name="country_code" id="form-code" class="form-input" maxlength="2">
                         </div>
+                        <div class="mb-4">
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-[#7A8AAA] mb-1">Trend</label>
+                            <select name="trend" id="form-trend" class="form-input">
+                                <option value="same">Same</option>
+                                <option value="up">Up</option>
+                                <option value="down">Down</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="flex justify-end space-x-4 mt-6">
                         <button type="button" onclick="closeModal()" class="px-6 py-2 text-[#7A8AAA] font-bold uppercase text-xs">Cancel</button>
@@ -176,6 +185,7 @@ $teams = $teams->fetchAll();
                 document.getElementById('form-rank').value = data.rank_position;
                 document.getElementById('form-points').value = data.points;
                 document.getElementById('form-code').value = data.country_code;
+                document.getElementById('form-trend').value = data.trend || 'same';
             } else {
                 document.getElementById('modal-title').innerText = 'Add Team';
                 document.getElementById('form-action').value = 'add';
@@ -184,6 +194,7 @@ $teams = $teams->fetchAll();
                 document.getElementById('form-rank').value = '';
                 document.getElementById('form-points').value = '';
                 document.getElementById('form-code').value = '';
+                document.getElementById('form-trend').value = 'same';
             }
         }
         function closeModal() {
