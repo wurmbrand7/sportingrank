@@ -20,16 +20,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $points = (float)$_POST['points'];
         $country_code = $_POST['country_code'];
         $sport_id = (int)$_POST['sport_id'];
-        $trend = $_POST['trend'] ?? 'same';
+        $wins = (int)$_POST['wins'];
+        $losses = (int)$_POST['losses'];
+        $draws = (int)$_POST['draws'];
+        $matches_played = (int)$_POST['matches_played'];
+        $trend = $_POST['trend'];
+        $notable_achievement = $_POST['notable_achievement'];
 
         if ($action === 'add') {
-            $stmt = $pdo->prepare("INSERT INTO teams (sport_id, rank_position, team_name, country_code, points, team_type, trend) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$sport_id, $rank_position, $team_name, $country_code, $points, $team_type, $trend]);
+            $stmt = $pdo->prepare("INSERT INTO teams (sport_id, rank_position, team_name, country_code, points, team_type, wins, losses, draws, matches_played, trend, notable_achievement) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$sport_id, $rank_position, $team_name, $country_code, $points, $team_type, $wins, $losses, $draws, $matches_played, $trend, $notable_achievement]);
             $msg = "Added team: " . $team_name;
         } else {
             $id = (int)$_POST['id'];
-            $stmt = $pdo->prepare("UPDATE teams SET rank_position = ?, team_name = ?, country_code = ?, points = ?, trend = ? WHERE id = ?");
-            $stmt->execute([$rank_position, $team_name, $country_code, $points, $trend, $id]);
+            $stmt = $pdo->prepare("UPDATE teams SET rank_position = ?, team_name = ?, country_code = ?, points = ?, wins = ?, losses = ?, draws = ?, matches_played = ?, trend = ?, notable_achievement = ? WHERE id = ?");
+            $stmt->execute([$rank_position, $team_name, $country_code, $points, $wins, $losses, $draws, $matches_played, $trend, $notable_achievement, $id]);
             $msg = "Updated team: " . $team_name;
         }
 
@@ -140,7 +145,7 @@ $teams = $teams->fetchAll();
                     <input type="hidden" name="id" id="form-id" value="">
                     <input type="hidden" name="sport_id" value="<?php echo $sport_id; ?>">
                     <div class="grid grid-cols-2 gap-4">
-                        <div class="mb-4">
+                        <div class="mb-4 col-span-2">
                             <label class="block text-[10px] font-black uppercase tracking-widest text-[#7A8AAA] mb-1">Team Name</label>
                             <input type="text" name="team_name" id="form-name" class="form-input" required>
                         </div>
@@ -164,6 +169,26 @@ $teams = $teams->fetchAll();
                                 <option value="down">Down</option>
                             </select>
                         </div>
+                        <div class="mb-4">
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-[#7A8AAA] mb-1">Played</label>
+                            <input type="number" name="matches_played" id="form-played" class="form-input">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-[#7A8AAA] mb-1">Wins</label>
+                            <input type="number" name="wins" id="form-wins" class="form-input">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-[#7A8AAA] mb-1">Losses</label>
+                            <input type="number" name="losses" id="form-losses" class="form-input">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-[#7A8AAA] mb-1">Draws</label>
+                            <input type="number" name="draws" id="form-draws" class="form-input">
+                        </div>
+                        <div class="mb-4 col-span-2">
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-[#7A8AAA] mb-1">Notable Achievement</label>
+                            <input type="text" name="notable_achievement" id="form-achievement" class="form-input">
+                        </div>
                     </div>
                     <div class="flex justify-end space-x-4 mt-6">
                         <button type="button" onclick="closeModal()" class="px-6 py-2 text-[#7A8AAA] font-bold uppercase text-xs">Cancel</button>
@@ -186,6 +211,11 @@ $teams = $teams->fetchAll();
                 document.getElementById('form-points').value = data.points;
                 document.getElementById('form-code').value = data.country_code;
                 document.getElementById('form-trend').value = data.trend || 'same';
+                document.getElementById('form-played').value = data.matches_played || 0;
+                document.getElementById('form-wins').value = data.wins || 0;
+                document.getElementById('form-losses').value = data.losses || 0;
+                document.getElementById('form-draws').value = data.draws || 0;
+                document.getElementById('form-achievement').value = data.notable_achievement || '';
             } else {
                 document.getElementById('modal-title').innerText = 'Add Team';
                 document.getElementById('form-action').value = 'add';
@@ -195,6 +225,11 @@ $teams = $teams->fetchAll();
                 document.getElementById('form-points').value = '';
                 document.getElementById('form-code').value = '';
                 document.getElementById('form-trend').value = 'same';
+                document.getElementById('form-played').value = '0';
+                document.getElementById('form-wins').value = '0';
+                document.getElementById('form-losses').value = '0';
+                document.getElementById('form-draws').value = '0';
+                document.getElementById('form-achievement').value = '';
             }
         }
         function closeModal() {
