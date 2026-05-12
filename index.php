@@ -8,11 +8,25 @@ require_once __DIR__ . '/includes/header.php';
 
 $sports = get_active_sports();
 
+// Performance Optimization: Fetch all top teams in a single query
+$sport_ids = array_column($sports, 'id');
+$all_teams = [];
+if (!empty($sport_ids)) {
+    $placeholders = implode(',', array_fill(0, count($sport_ids), '?'));
+    $stmt = $pdo->prepare("SELECT * FROM teams WHERE sport_id IN ($placeholders) AND is_active = 1 ORDER BY points DESC, wins DESC");
+    $stmt->execute($sport_ids);
+    $raw_teams = $stmt->fetchAll();
+
+    foreach ($raw_teams as $team) {
+        $all_teams[$team['sport_id']][$team['team_type']][] = $team;
+    }
+}
+
 $default_bg     = 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=2000';
 $stadium_images = ['all' => $default_bg];
 foreach ($sports as $s) {
-    $stadium_images[$s['slug']] = !empty($s['background_image'])
-        ? $s['background_image']
+    $stadium_images[$s['slug']] = !empty($s['hero_image'])
+        ? $s['hero_image']
         : $default_bg;
 }
 ?>
@@ -25,15 +39,17 @@ foreach ($sports as $s) {
     <div class="bg-[#0a0a1a] border-b border-white/5 sticky top-[72px] z-50">
         <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
 
-            <!-- National / Club toggle -->
+            <!-- National / Club / Men / Women toggle -->
             <div class="flex items-center space-x-4 bg-card p-1 rounded-full border border-white/10">
                 <button onclick="setTeamType('national')" id="type-national"
                         class="type-filter-btn px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition bg-accent text-primary">
-                    <?php echo t('nav.national', 'National'); ?>
+                    <span class="standard-label"><?php echo t('nav.national', 'National'); ?></span>
+                    <span class="combat-label hidden"><?php echo t('label.men', 'Men'); ?></span>
                 </button>
                 <button onclick="setTeamType('club')" id="type-club"
                         class="type-filter-btn px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition text-muted hover:text-white">
-                    <?php echo t('nav.leagues', 'Leagues'); ?>
+                    <span class="standard-label"><?php echo t('nav.leagues', 'Leagues'); ?></span>
+                    <span class="combat-label hidden"><?php echo t('label.women', 'Women'); ?></span>
                 </button>
             </div>
 
@@ -61,8 +77,13 @@ foreach ($sports as $s) {
 
                 <?php foreach ($sports as $sport): ?>
                     <?php
-                        $national_teams = get_top_teams($sport['id'], 10, 'national');
-                        $club_teams     = get_top_teams($sport['id'], 10, 'club');
+                        // Optimized: Get from pre-fetched array
+                        $national_teams = array_slice($all_teams[$sport['id']]['national'] ?? [], 0, 10);
+                        $club_teams     = array_slice($all_teams[$sport['id']]['club'] ?? [], 0, 10);
+
+                        // Add rank position
+                        foreach($national_teams as $i => &$t) $t['rank_position'] = $i + 1;
+                        foreach($club_teams as $i => &$t) $t['rank_position'] = $i + 1;
                     ?>
 
                     <div class="sport-ranking-card"
@@ -242,6 +263,11 @@ document.addEventListener('DOMContentLoaded', function () {
     navButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             const target = btn.getAttribute('data-target');
+
+            // Toggle Men/Women labels for Combat Sports
+            const isCombat = (target === 'boxing' || target === 'ufc');
+            document.querySelectorAll('.combat-label').forEach(el => el.classList.toggle('hidden', !isCombat));
+            document.querySelectorAll('.standard-label').forEach(el => el.classList.toggle('hidden', isCombat));
 
             navButtons.forEach(b => {
                 b.classList.remove('bg-accent', 'text-primary', 'border-accent');

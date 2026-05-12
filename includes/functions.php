@@ -185,6 +185,7 @@ function render_team_row(array $team): string {
             <div class=\"flex items-center gap-3 min-w-0 pr-4\">
                 <img src=\"https://flagcdn.com/w40/{$flag}.png\" alt=\"{$safe_name} flag\"
                      onerror=\"this.src='/assets/img/default-flag.png'\"
+                     loading=\"lazy\"
                      class=\"w-7 h-5 object-cover rounded-sm shadow-sm flex-shrink-0\">
                 <div class=\"flex flex-col min-w-0\">
                     <span class=\"font-bold text-[14px] text-white leading-tight truncate\">{$safe_name}</span>
@@ -232,6 +233,7 @@ function render_team_row(array $team): string {
                 <div class=\"flex items-center gap-2 min-w-0\">
                     <img src=\"https://flagcdn.com/w40/{$flag}.png\" alt=\"{$safe_name} flag\"
                          onerror=\"this.src='/assets/img/default-flag.png'\"
+                         loading=\"lazy\"
                          class=\"w-6 h-4 object-cover rounded-sm shadow-sm flex-shrink-0\">
                     <span class=\"font-bold text-[13px] text-white leading-tight truncate\">{$safe_name}</span>
                 </div>

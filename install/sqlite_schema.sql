@@ -24,6 +24,8 @@ INSERT INTO sports VALUES(7,'Volleyball','volleyball','🏐','','FIVB Points',NU
 INSERT INTO sports VALUES(8,'Rugby','rugby','🏉','','World Rugby Points',NULL,NULL,9,1,'2026-05-11 14:09:37','2026-05-11 14:09:37');
 INSERT INTO sports VALUES(9,'Baseball','baseball','⚾','','WBSC Points',NULL,NULL,8,1,'2026-05-11 14:09:37','2026-05-11 14:09:37');
 INSERT INTO sports VALUES(10,'Golf','golf','⛳','','OWGR Points',NULL,NULL,10,1,'2026-05-11 14:09:37','2026-05-11 14:09:37');
+INSERT INTO sports VALUES(11,'Boxing','boxing','🥊',NULL,'P4P Ranking',NULL,NULL,11,1,'2026-05-12 06:20:43','2026-05-12 06:20:43');
+INSERT INTO sports VALUES(12,'UFC','ufc','🥋',NULL,'P4P Ranking',NULL,NULL,12,1,'2026-05-12 06:20:43','2026-05-12 06:20:43');
 CREATE TABLE teams (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   sport_id INTEGER NOT NULL,
@@ -247,6 +249,46 @@ INSERT INTO teams VALUES(217,10,7,'England','national','gb',NULL,620,'pts',NULL,
 INSERT INTO teams VALUES(218,10,8,'South Korea','national','kr',NULL,600,'pts',NULL,'same',NULL,18,8,10,0,0,NULL,1,'2026-05-11 20:46:12');
 INSERT INTO teams VALUES(219,10,9,'Japan','national','jp',NULL,580,'pts',NULL,'same',NULL,17,7,10,0,0,NULL,1,'2026-05-11 20:46:12');
 INSERT INTO teams VALUES(220,10,10,'Canada','national','ca',NULL,560,'pts',NULL,'same',NULL,16,6,10,0,0,NULL,1,'2026-05-11 20:46:12');
+INSERT INTO teams VALUES(221,11,1,'Oleksandr Usyk','national','ua',NULL,100,'pts',NULL,'same',NULL,30,25,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(222,11,2,'Terence Crawford','national','us',NULL,98,'pts',NULL,'same',NULL,29,24,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(223,11,3,'Naoya Inoue','national','jp',NULL,95,'pts',NULL,'same',NULL,28,23,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(224,11,4,'Dmitry Bivol','national','ru',NULL,92,'pts',NULL,'same',NULL,27,22,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(225,11,5,'Canelo Alvarez','national','mx',NULL,90,'pts',NULL,'same',NULL,26,21,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(226,11,6,'Artur Beterbiev','national','ru',NULL,88,'pts',NULL,'same',NULL,25,20,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(227,11,7,'Gervonta Davis','national','us',NULL,85,'pts',NULL,'same',NULL,24,19,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(228,11,8,'Jesse Rodriguez','national','us',NULL,82,'pts',NULL,'same',NULL,23,18,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(229,11,9,'Shakur Stevenson','national','us',NULL,80,'pts',NULL,'same',NULL,22,17,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(230,11,10,'Junto Nakatani','national','jp',NULL,78,'pts',NULL,'same',NULL,21,16,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(231,11,1,'Claressa Shields','club','us',NULL,100,'pts',NULL,'same',NULL,30,25,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(232,11,2,'Katie Taylor','club','ie',NULL,98,'pts',NULL,'same',NULL,29,24,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(233,11,3,'Amanda Serrano','club','pr',NULL,95,'pts',NULL,'same',NULL,28,23,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(234,11,4,'Seniesa Estrada','club','us',NULL,92,'pts',NULL,'same',NULL,27,22,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(235,11,5,'Alycia Baumgardner','club','us',NULL,90,'pts',NULL,'same',NULL,26,21,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(236,11,6,'Mikaela Mayer','club','us',NULL,88,'pts',NULL,'same',NULL,25,20,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(237,11,7,'Chantelle Cameron','club','gb',NULL,85,'pts',NULL,'same',NULL,24,19,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(238,11,8,'Delfine Persoon','club','be',NULL,82,'pts',NULL,'same',NULL,23,18,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(239,11,9,'Jessica McCaskill','club','us',NULL,80,'pts',NULL,'same',NULL,22,17,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(240,11,10,'Terri Harper','club','gb',NULL,78,'pts',NULL,'same',NULL,21,16,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(241,12,1,'Islam Makhachev','national','ru',NULL,100,'pts',NULL,'same',NULL,30,25,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(242,12,2,'Alex Pereira','national','br',NULL,98,'pts',NULL,'same',NULL,29,24,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(243,12,3,'Jon Jones','national','us',NULL,95,'pts',NULL,'same',NULL,28,23,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(244,12,4,'Ilia Topuria','national','es',NULL,92,'pts',NULL,'same',NULL,27,22,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(245,12,5,'Belal Muhammad','national','ps',NULL,90,'pts',NULL,'same',NULL,26,21,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(246,12,6,'Leon Edwards','national','gb',NULL,88,'pts',NULL,'same',NULL,25,20,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(247,12,7,'Alexander Volkanovski','national','au',NULL,85,'pts',NULL,'same',NULL,24,19,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(248,12,8,'Tom Aspinall','national','gb',NULL,82,'pts',NULL,'same',NULL,23,18,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(249,12,9,'Max Holloway','national','us',NULL,80,'pts',NULL,'same',NULL,22,17,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(250,12,10,'Dricus du Plessis','national','za',NULL,78,'pts',NULL,'same',NULL,21,16,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(251,12,1,'Alexa Grasso','club','mx',NULL,100,'pts',NULL,'same',NULL,30,25,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(252,12,2,'Valentina Shevchenko','club','kg',NULL,98,'pts',NULL,'same',NULL,29,24,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(253,12,3,'Zhang Weili','club','cn',NULL,95,'pts',NULL,'same',NULL,28,23,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(254,12,4,'Manon Fiorot','club','fr',NULL,92,'pts',NULL,'same',NULL,27,22,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(255,12,5,'Julianna Peña','club','us',NULL,90,'pts',NULL,'same',NULL,26,21,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(256,12,6,'Rose Namajunas','club','us',NULL,88,'pts',NULL,'same',NULL,25,20,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(257,12,7,'Erin Blanchfield','club','us',NULL,85,'pts',NULL,'same',NULL,24,19,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(258,12,8,'Yan Xiaonan','club','cn',NULL,82,'pts',NULL,'same',NULL,23,18,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(259,12,9,'Tatiana Suarez','club','us',NULL,80,'pts',NULL,'same',NULL,22,17,0,0,0,NULL,1,'2026-05-12 06:22:25');
+INSERT INTO teams VALUES(260,12,10,'Jéssica Andrade','club','br',NULL,78,'pts',NULL,'same',NULL,21,16,0,0,0,NULL,1,'2026-05-12 06:22:25');
 CREATE TABLE site_settings (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   setting_key VARCHAR(100) NOT NULL UNIQUE,
@@ -315,6 +357,56 @@ INSERT INTO translations VALUES(12,'en','label.draws','D');
 INSERT INTO translations VALUES(13,'en','label.gp','GP');
 INSERT INTO translations VALUES(14,'en','label.SportingRank','Sporting Rank | Sports Ranking');
 INSERT INTO translations VALUES(15,'en','label.SportingRank_2026','2026');
+INSERT INTO translations VALUES(16,'en','nav.national','National');
+INSERT INTO translations VALUES(17,'en','nav.leagues','Leagues');
+INSERT INTO translations VALUES(18,'en','label.men','Men');
+INSERT INTO translations VALUES(19,'en','label.women','Women');
+INSERT INTO translations VALUES(20,'en','label.men_rankings','Men Rankings');
+INSERT INTO translations VALUES(21,'en','label.women_rankings','Women Rankings');
+INSERT INTO translations VALUES(22,'en','label.national_teams','National Teams');
+INSERT INTO translations VALUES(23,'en','label.leagues_clubs','Leagues / Clubs');
+INSERT INTO translations VALUES(24,'en','label.club_standings','Club Standings');
+INSERT INTO translations VALUES(25,'en','label.status','Status');
+INSERT INTO translations VALUES(26,'en','label.team','Team');
+INSERT INTO translations VALUES(27,'en','label.points','Points');
+INSERT INTO translations VALUES(28,'en','label.rank','Rank');
+INSERT INTO translations VALUES(29,'en','nav.all_sports','All Sports');
+INSERT INTO translations VALUES(30,'en','label.live','Live');
+INSERT INTO translations VALUES(31,'en','label.trend_vote','Trend / Vote');
+INSERT INTO translations VALUES(32,'en','label.full_standings','Full Standings');
+INSERT INTO translations VALUES(33,'en','label.explore_sports','Explore Sports');
+INSERT INTO translations VALUES(34,'en','nav.search','Search sports or teams...');
+INSERT INTO translations VALUES(35,'en','nav.history','History');
+INSERT INTO translations VALUES(36,'en','nav.about','About');
+INSERT INTO translations VALUES(37,'en','empty.national','No national rankings found');
+INSERT INTO translations VALUES(38,'en','empty.club','No league rankings found');
+INSERT INTO translations VALUES(39,'en','empty.no_club','No club rankings available yet.');
+INSERT INTO translations VALUES(40,'en','empty.no_national','No national rankings available yet.');
+INSERT INTO translations VALUES(41,'en','label.pts','pts');
+INSERT INTO translations VALUES(42,'ar','nav.national','المنتخبات');
+INSERT INTO translations VALUES(43,'ar','nav.leagues','الدوريات');
+INSERT INTO translations VALUES(44,'ar','label.men','رجال');
+INSERT INTO translations VALUES(45,'ar','label.women','سيدات');
+INSERT INTO translations VALUES(46,'ar','label.men_rankings','تصنيفات الرجال');
+INSERT INTO translations VALUES(47,'ar','label.women_rankings','تصنيفات السيدات');
+INSERT INTO translations VALUES(48,'ar','label.national_teams','المنتخبات الوطنية');
+INSERT INTO translations VALUES(49,'ar','label.leagues_clubs','الدوريات والأندية');
+INSERT INTO translations VALUES(50,'ar','label.club_standings','ترتيب الأندية');
+INSERT INTO translations VALUES(51,'ar','label.team','الفريق');
+INSERT INTO translations VALUES(52,'ar','label.points','النقاط');
+INSERT INTO translations VALUES(53,'ar','label.rank','الترتيب');
+INSERT INTO translations VALUES(54,'ar','nav.all_sports','جميع الرياضات');
+INSERT INTO translations VALUES(55,'ar','label.live','مباشر');
+INSERT INTO translations VALUES(56,'ar','label.full_standings','الترتيب الكامل');
+INSERT INTO translations VALUES(57,'ar','nav.search','البحث عن رياضات أو فرق...');
+INSERT INTO translations VALUES(58,'en','men','Men');
+INSERT INTO translations VALUES(59,'en','women','Women');
+INSERT INTO translations VALUES(60,'ar','men','رجال');
+INSERT INTO translations VALUES(61,'ar','women','نساء');
+INSERT INTO translations VALUES(62,'fr','men','Hommes');
+INSERT INTO translations VALUES(63,'fr','women','Femmes');
+INSERT INTO translations VALUES(64,'es','men','Hombres');
+INSERT INTO translations VALUES(65,'es','women','Mujeres');
 CREATE TABLE blogs (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title VARCHAR(255) NOT NULL,
@@ -335,10 +427,11 @@ CREATE TABLE backlinks (
     is_active TINYINT(1) DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-INSERT INTO sqlite_sequence VALUES('sports',10);
+INSERT INTO sqlite_sequence VALUES('sports',12);
 INSERT INTO sqlite_sequence VALUES('site_settings',8);
 INSERT INTO sqlite_sequence VALUES('admin_users',1);
-INSERT INTO sqlite_sequence VALUES('teams',220);
+INSERT INTO sqlite_sequence VALUES('teams',260);
 INSERT INTO sqlite_sequence VALUES('languages',8);
-INSERT INTO sqlite_sequence VALUES('translations',15);
+INSERT INTO sqlite_sequence VALUES('translations',65);
+CREATE INDEX idx_teams_performance ON teams(sport_id, team_type, is_active, points DESC, wins DESC);
 COMMIT;

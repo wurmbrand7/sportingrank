@@ -36,6 +36,9 @@ $_langcode = $_lang['code'];
     <!-- Keywords SEO -->
     <meta name="keywords" content="Sporting Rank, Sport Rank, Sports Rank, Sports Ranking, Sport Ranking, Sport Rankings, National Team Rankings, World Sport Rank">
 
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="GSC_VERIFICATION_TOKEN_HERE">
+
     <!-- hreflang SEO -->
     <?php foreach (get_languages() as $_hl): ?>
     <link rel="alternate" hreflang="<?php echo $_hl['code']; ?>"

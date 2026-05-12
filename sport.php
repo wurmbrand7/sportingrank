@@ -110,18 +110,19 @@ echo '<script type="application/ld+json">' . json_encode([
 
     <div class="container mx-auto px-4 relative z-10 text-center">
 
-        <!-- National / Club switcher -->
+        <!-- National / Club / Men / Women switcher -->
+        <?php $is_combat = ($slug === 'boxing' || $slug === 'ufc'); ?>
         <div class="flex justify-center mb-8">
             <div class="flex items-center space-x-4 bg-card p-1 rounded-full border border-border">
                 <a href="/sport/<?php echo e($slug); ?>?type=national"
                    class="px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition
                           <?php echo $type === 'national' ? 'bg-accent text-primary' : 'text-muted hover:text-white'; ?>">
-                    <?php echo t('label.national_teams', 'National Teams'); ?>
+                    <?php echo $is_combat ? t('label.men', 'Men') : t('label.national_teams', 'National Teams'); ?>
                 </a>
                 <a href="/sport/<?php echo e($slug); ?>?type=club"
                    class="px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition
                           <?php echo $type === 'club' ? 'bg-accent text-primary' : 'text-muted hover:text-white'; ?>">
-                    <?php echo t('label.leagues_clubs', 'Leagues / Clubs'); ?>
+                    <?php echo $is_combat ? t('label.women', 'Women') : t('label.leagues_clubs', 'Leagues / Clubs'); ?>
                 </a>
             </div>
         </div>
@@ -153,9 +154,13 @@ echo '<script type="application/ld+json">' . json_encode([
 
                     <div class="p-4 md:p-6 border-b border-border flex justify-between items-center bg-white/5">
                         <h2 class="text-xl md:text-2xl font-heading font-black uppercase italic tracking-tighter">
-                            <?php echo $type === 'club'
-                                ? t('label.club_standings',  'Club Standings')
-                                : t('label.SportingRank | Global Sports Ranking & Sport Rank', 'SportingRank | Global Sports Ranking & Sport Rank'); ?>
+                            <?php
+                                if ($is_combat) {
+                                    echo $type === 'club' ? t('label.women_rankings', 'Women Rankings') : t('label.men_rankings', 'Men Rankings');
+                                } else {
+                                    echo $type === 'club' ? t('label.club_standings', 'Club Standings') : t('label.SportingRank | Global Sports Ranking & Sport Rank', 'SportingRank | Global Sports Ranking & Sport Rank');
+                                }
+                            ?>
                         </h2>
                         <div class="text-[10px] font-bold uppercase tracking-widest text-accent">
                             <?php echo t('label.real_time', 'Real-Time Data'); ?>
