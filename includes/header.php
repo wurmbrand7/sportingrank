@@ -22,11 +22,21 @@ $_langcode = $_lang['code'];
 <!DOCTYPE html>
 <html lang="<?php echo $_langcode; ?>" dir="<?php echo $_dir; ?>">
 <head>
+    <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KHV4WRSQ');</script>
+    })(window,document,'script','dataLayer','<?php echo e($settings['google_tag_manager'] ?? 'GTM-KHV4WRSQ'); ?>');</script>
+
+    <!-- Google Analytics (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo e($settings['google_analytics'] ?? 'G-XXXXXXXXXX'); ?>"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '<?php echo e($settings['google_analytics'] ?? 'G-XXXXXXXXXX'); ?>');
+    </script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,7 +47,7 @@ $_langcode = $_lang['code'];
     <meta name="keywords" content="Sporting Rank, Sport Rank, Sports Rank, Sports Ranking, Sport Ranking, Sport Rankings, National Team Rankings, World Sport Rank">
 
     <!-- Google Search Console Verification -->
-    <meta name="google-site-verification" content="GSC_VERIFICATION_TOKEN_HERE">
+    <meta name="google-site-verification" content="<?php echo e($settings['google_search_console'] ?? 'GSC_VERIFICATION_TOKEN_HERE'); ?>">
 
     <!-- hreflang SEO -->
     <?php foreach (get_languages() as $_hl): ?>
@@ -126,7 +136,7 @@ $_langcode = $_lang['code'];
     <link rel="stylesheet" href="<?php echo SITE_URL; ?>/assets/css/style.css">
 </head>
 <body class="bg-primary text-[#EEEEFF] font-sans">
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KHV4WRSQ"
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<?php echo e($settings['google_tag_manager'] ?? 'GTM-KHV4WRSQ'); ?>"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav class="sticky top-0 z-50 bg-primary/80 backdrop-blur-md border-b border-border">

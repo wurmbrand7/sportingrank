@@ -43,13 +43,11 @@ foreach ($sports as $s) {
             <div class="flex items-center space-x-4 bg-card p-1 rounded-full border border-white/10">
                 <button onclick="setTeamType('national')" id="type-national"
                         class="type-filter-btn px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition bg-accent text-primary">
-                    <span class="standard-label"><?php echo t('nav.national', 'National'); ?></span>
-                    <span class="combat-label hidden"><?php echo t('label.men', 'Men'); ?></span>
+                    <span id="label-national-text"><?php echo t('nav.national', 'National'); ?></span>
                 </button>
                 <button onclick="setTeamType('club')" id="type-club"
                         class="type-filter-btn px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition text-muted hover:text-white">
-                    <span class="standard-label"><?php echo t('nav.leagues', 'Leagues'); ?></span>
-                    <span class="combat-label hidden"><?php echo t('label.women', 'Women'); ?></span>
+                    <span id="label-club-text"><?php echo t('nav.leagues', 'Leagues'); ?></span>
                 </button>
             </div>
 
@@ -254,6 +252,17 @@ function voteForTeam(teamId, teamName) {
 // ---------------------------------------------------------------------------
 // Sport filter + background swap
 // ---------------------------------------------------------------------------
+const sportLabels = <?php
+    $labels = [];
+    foreach($sports as $s) {
+        $labels[$s['slug']] = [
+            'national' => $s['label_national'] ?: 'National',
+            'club' => $s['label_club'] ?: 'Leagues'
+        ];
+    }
+    echo json_encode($labels);
+?>;
+
 document.addEventListener('DOMContentLoaded', function () {
     const navButtons = document.querySelectorAll('.sport-nav-btn');
     const cards      = document.querySelectorAll('.sport-ranking-card');
@@ -264,10 +273,14 @@ document.addEventListener('DOMContentLoaded', function () {
         btn.addEventListener('click', () => {
             const target = btn.getAttribute('data-target');
 
-            // Toggle Men/Women labels for Combat Sports
-            const isCombat = (target === 'boxing' || target === 'ufc');
-            document.querySelectorAll('.combat-label').forEach(el => el.classList.toggle('hidden', !isCombat));
-            document.querySelectorAll('.standard-label').forEach(el => el.classList.toggle('hidden', isCombat));
+            // Update labels
+            if(target !== 'all' && sportLabels[target]) {
+                document.getElementById('label-national-text').innerText = sportLabels[target].national;
+                document.getElementById('label-club-text').innerText = sportLabels[target].club;
+            } else {
+                document.getElementById('label-national-text').innerText = '<?php echo t_raw('nav.national', 'National'); ?>';
+                document.getElementById('label-club-text').innerText = '<?php echo t_raw('nav.leagues', 'Leagues'); ?>';
+            }
 
             navButtons.forEach(b => {
                 b.classList.remove('bg-accent', 'text-primary', 'border-accent');

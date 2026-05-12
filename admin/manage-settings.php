@@ -92,6 +92,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <label class="block text-[10px] font-black uppercase tracking-widest text-[#7A8AAA] mb-1">Meta Description</label>
                             <textarea name="meta_description" class="form-input h-24"><?php echo e($settings['meta_description'] ?? ''); ?></textarea>
                         </div>
+                        <div>
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-[#7A8AAA] mb-1">Google Tag Manager ID (e.g. GTM-XXXXXX)</label>
+                            <input type="text" name="google_tag_manager" class="form-input" value="<?php echo e($settings['google_tag_manager'] ?? ''); ?>">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-[#7A8AAA] mb-1">Google Analytics ID (e.g. G-XXXXXX)</label>
+                            <input type="text" name="google_analytics" class="form-input" value="<?php echo e($settings['google_analytics'] ?? ''); ?>">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-[#7A8AAA] mb-1">Google Search Console Verification</label>
+                            <input type="text" name="google_search_console" class="form-input" value="<?php echo e($settings['google_search_console'] ?? ''); ?>">
+                        </div>
                     </div>
                 </div>
 

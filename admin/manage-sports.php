@@ -20,14 +20,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $ranking_type = $_POST['ranking_type'];
         $sort_order = (int)$_POST['sort_order'];
 
+        $label_national = $_POST['label_national'] ?? 'National';
+        $label_club = $_POST['label_club'] ?? 'Leagues';
+
         if ($action === 'add') {
-            $stmt = $pdo->prepare("INSERT INTO sports (name, slug, icon, governing_body, ranking_type, sort_order) VALUES (?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$name, $slug, $icon, $governing_body, $ranking_type, $sort_order]);
+            $stmt = $pdo->prepare("INSERT INTO sports (name, slug, icon, governing_body, ranking_type, sort_order, label_national, label_club) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$name, $slug, $icon, $governing_body, $ranking_type, $sort_order, $label_national, $label_club]);
             $msg = "Added sport: " . $name;
         } else {
             $id = (int)$_POST['id'];
-            $stmt = $pdo->prepare("UPDATE sports SET name = ?, slug = ?, icon = ?, governing_body = ?, ranking_type = ?, sort_order = ? WHERE id = ?");
-            $stmt->execute([$name, $slug, $icon, $governing_body, $ranking_type, $sort_order, $id]);
+            $stmt = $pdo->prepare("UPDATE sports SET name = ?, slug = ?, icon = ?, governing_body = ?, ranking_type = ?, sort_order = ?, label_national = ?, label_club = ? WHERE id = ?");
+            $stmt->execute([$name, $slug, $icon, $governing_body, $ranking_type, $sort_order, $label_national, $label_club, $id]);
             $msg = "Updated sport: " . $name;
         }
 
@@ -150,6 +153,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <label class="block text-[10px] font-black uppercase tracking-widest text-[#7A8AAA] mb-1">Ranking Type</label>
                             <input type="text" name="ranking_type" id="form-type" class="form-input">
                         </div>
+                        <div class="mb-4">
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-[#7A8AAA] mb-1">National Label</label>
+                            <input type="text" name="label_national" id="form-label-national" class="form-input" placeholder="National">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-[#7A8AAA] mb-1">Club/League Label</label>
+                            <input type="text" name="label_club" id="form-label-club" class="form-input" placeholder="Leagues">
+                        </div>
                     </div>
                     <div class="flex justify-end space-x-4 mt-6">
                         <button type="button" onclick="closeModal()" class="px-6 py-2 text-[#7A8AAA] font-bold uppercase text-xs">Cancel</button>
@@ -173,6 +184,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 document.getElementById('form-order').value = data.sort_order;
                 document.getElementById('form-gov').value = data.governing_body;
                 document.getElementById('form-type').value = data.ranking_type;
+                document.getElementById('form-label-national').value = data.label_national || 'National';
+                document.getElementById('form-label-club').value = data.label_club || 'Leagues';
             } else {
                 document.getElementById('modal-title').innerText = 'Add New Sport';
                 document.getElementById('form-action').value = 'add';
