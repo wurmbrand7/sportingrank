@@ -1,12 +1,7 @@
-# SportingRank .htaccess for cPanel Shared Hosting
+# SportingRank .htaccess
 
-# Disable directory browsing
 Options -Indexes
-
-# Disable MultiViews to avoid conflict with sport.php and other files
 Options -MultiViews
-
-# Set default index file
 DirectoryIndex index.php
 
 <IfModule mod_rewrite.c>
@@ -17,35 +12,20 @@ DirectoryIndex index.php
     RewriteCond %{HTTPS} off
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-    # Handle Pretty URLs for sport pages (e.g. sportingrank.com/sport/soccer)
+    # Handle Pretty URLs for sport pages (using 'ranking' prefix to avoid collision)
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^sport/([a-z0-9-]+)/?$ sport.php?slug=$1 [L,QSA]
+    RewriteRule ^ranking/([a-z0-9-]+)/?$ sport.php?slug=$1 [L,QSA]
 
 </IfModule>
 
-# Block bots from indexing admin panel
 <IfModule mod_headers.c>
     <FilesMatch "^admin">
         Header set X-Robots-Tag "noindex, nofollow"
     </FilesMatch>
 </IfModule>
 
-# Protect sensitive system files
-<FilesMatch "^\.env|config\.php|sportingrank\.sqlite|composer\.json|package\.json|package-lock\.json$">
+<FilesMatch "^\.env|config\.php|composer\.json|package\.json|package-lock\.json$">
     Order Allow,Deny
     Deny from all
 </FilesMatch>
-
-# Gzip Compression for better performance on shared hosting
-<IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/plain
-    AddOutputFilterByType DEFLATE text/html
-    AddOutputFilterByType DEFLATE text/xml
-    AddOutputFilterByType DEFLATE text/css
-    AddOutputFilterByType DEFLATE application/xml
-    AddOutputFilterByType DEFLATE application/xhtml+xml
-    AddOutputFilterByType DEFLATE application/rss+xml
-    AddOutputFilterByType DEFLATE application/javascript
-    AddOutputFilterByType DEFLATE application/x-javascript
-</IfModule>

@@ -68,6 +68,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <a href="dashboard.php" class="sidebar-link">📊 Dashboard</a>
             <a href="manage-sports.php" class="sidebar-link active">🏆 Manage Sports</a>
             <a href="manage-teams.php" class="sidebar-link">👥 Manage Teams</a>
+            <a href="manage-blogs.php" class="sidebar-link">📝 Manage Blogs</a>
+            <a href="manage-backlinks.php" class="sidebar-link">🔗 Backlinks</a>
             <a href="manage-settings.php" class="sidebar-link">⚙️ Site Settings</a>
         </nav>
     </aside>

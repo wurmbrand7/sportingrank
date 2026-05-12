@@ -178,7 +178,7 @@ foreach ($sports as $s) {
 
                             <!-- Card Footer -->
                             <div class="p-4 bg-card/80 border-t border-white/5 text-center">
-                                <a href="<?php echo SITE_URL; ?>/sport/<?php echo e($sport['slug']); ?>"
+                                <a href="<?php echo SITE_URL; ?>/ranking/<?php echo e($sport['slug']); ?>"
                                    class="inline-flex items-center space-x-2 text-[9px] font-black uppercase tracking-[0.2em] hover:text-accent transition">
                                     <span><?php echo t('nav.full_standings', 'Full Standings'); ?></span>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">

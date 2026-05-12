@@ -17,12 +17,12 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
     foreach ($sports as $sport):
     ?>
     <url>
-        <loc><?php echo SITE_URL; ?>/sport/<?php echo e($sport['slug']); ?></loc>
+        <loc><?php echo SITE_URL; ?>/ranking/<?php echo e($sport['slug']); ?></loc>
         <priority>0.8</priority>
         <changefreq>weekly</changefreq>
     </url>
     <url>
-        <loc><?php echo SITE_URL; ?>/sport/<?php echo e($sport['slug']); ?>?type=club</loc>
+        <loc><?php echo SITE_URL; ?>/ranking/<?php echo e($sport['slug']); ?>?type=club</loc>
         <priority>0.7</priority>
         <changefreq>weekly</changefreq>
     </url>

@@ -41,6 +41,8 @@ $backlinks = $pdo->query("SELECT * FROM backlinks ORDER BY created_at DESC")->fe
         <div class="p-6 border-b border-[#1e2a40]"><h2 class="text-xl font-black italic uppercase tracking-tighter">Sporting<span class="text-[#F0A500]">Rank</span></h2></div>
         <nav class="mt-6">
             <a href="dashboard.php" class="sidebar-link">📊 Dashboard</a>
+            <a href="manage-sports.php" class="sidebar-link">🏆 Manage Sports</a>
+            <a href="manage-teams.php" class="sidebar-link">👥 Manage Teams</a>
             <a href="manage-blogs.php" class="sidebar-link">📝 Manage Blogs</a>
             <a href="manage-backlinks.php" class="sidebar-link active">🔗 Backlinks</a>
             <a href="manage-settings.php" class="sidebar-link">⚙️ Site Settings</a>

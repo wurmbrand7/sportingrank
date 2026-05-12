@@ -41,6 +41,12 @@ $recent_activity = $pdo->query("SELECT * FROM activity_log ORDER BY created_at D
             <a href="manage-teams.php" class="sidebar-link">
                 <span class="mr-3">👥</span> Manage Teams
             </a>
+            <a href="manage-blogs.php" class="sidebar-link">
+                <span class="mr-3">📝</span> Manage Blogs
+            </a>
+            <a href="manage-backlinks.php" class="sidebar-link">
+                <span class="mr-3">🔗</span> Backlinks
+            </a>
             <a href="manage-settings.php" class="sidebar-link">
                 <span class="mr-3">⚙️</span> Site Settings
             </a>

@@ -62,7 +62,7 @@ if (!$sport) {
 
 $sport_name    = $sport['name'] ?? 'Sport';
 $type_label    = $type === 'club' ? 'Leagues & Clubs' : 'National Team Rankings';
-$canonical_url = SITE_URL . '/sport/' . rawurlencode($slug) . '?type=' . $type;
+$canonical_url = SITE_URL . '/ranking/' . rawurlencode($slug) . '?type=' . $type;
 
 // Override site_title and meta_description for this page
 // header.php reads these from $settings — we inject before including it
@@ -114,12 +114,12 @@ echo '<script type="application/ld+json">' . json_encode([
         <?php $is_combat = ($slug === 'boxing' || $slug === 'ufc'); ?>
         <div class="flex justify-center mb-8">
             <div class="flex items-center space-x-4 bg-card p-1 rounded-full border border-border">
-                <a href="/sport/<?php echo e($slug); ?>?type=national"
+                <a href="/ranking/<?php echo e($slug); ?>?type=national"
                    class="px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition
                           <?php echo $type === 'national' ? 'bg-accent text-primary' : 'text-muted hover:text-white'; ?>">
                     <?php echo $is_combat ? t('label.men', 'Men') : t('label.national_teams', 'National Teams'); ?>
                 </a>
-                <a href="/sport/<?php echo e($slug); ?>?type=club"
+                <a href="/ranking/<?php echo e($slug); ?>?type=club"
                    class="px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition
                           <?php echo $type === 'club' ? 'bg-accent text-primary' : 'text-muted hover:text-white'; ?>">
                     <?php echo $is_combat ? t('label.women', 'Women') : t('label.leagues_clubs', 'Leagues / Clubs'); ?>
@@ -293,7 +293,7 @@ echo '<script type="application/ld+json">' . json_encode([
                     <div class="space-y-3">
                         <?php foreach ($all_sports as $os): ?>
                             <?php if ($os['slug'] === $slug) continue; ?>
-                            <a href="/sport/<?php echo e($os['slug']); ?>"
+                            <a href="/ranking/<?php echo e($os['slug']); ?>"
                                class="block p-4 rounded-xl border border-border/50 bg-white/5
                                       hover:bg-accent/10 hover:border-accent transition group">
                                 <div class="flex items-center justify-between">

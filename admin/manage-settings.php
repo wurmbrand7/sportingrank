@@ -44,6 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <a href="dashboard.php" class="sidebar-link">📊 Dashboard</a>
             <a href="manage-sports.php" class="sidebar-link">🏆 Manage Sports</a>
             <a href="manage-teams.php" class="sidebar-link">👥 Manage Teams</a>
+            <a href="manage-blogs.php" class="sidebar-link">📝 Manage Blogs</a>
+            <a href="manage-backlinks.php" class="sidebar-link">🔗 Backlinks</a>
             <a href="manage-settings.php" class="sidebar-link active">⚙️ Site Settings</a>
         </nav>
     </aside>
@@ -89,6 +91,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div>
                             <label class="block text-[10px] font-black uppercase tracking-widest text-[#7A8AAA] mb-1">Meta Description</label>
                             <textarea name="meta_description" class="form-input h-24"><?php echo e($settings['meta_description'] ?? ''); ?></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Media -->
+                <div class="admin-card p-6">
+                    <h3 class="font-black uppercase tracking-widest text-[#F0A500] text-xs mb-6">Social Media Links</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-[#7A8AAA] mb-1">Facebook URL</label>
+                            <input type="url" name="social_facebook" class="form-input" value="<?php echo e($settings['social_facebook'] ?? ''); ?>">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-[#7A8AAA] mb-1">Twitter URL</label>
+                            <input type="url" name="social_twitter" class="form-input" value="<?php echo e($settings['social_twitter'] ?? ''); ?>">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-[#7A8AAA] mb-1">Instagram URL</label>
+                            <input type="url" name="social_instagram" class="form-input" value="<?php echo e($settings['social_instagram'] ?? ''); ?>">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-[#7A8AAA] mb-1">YouTube URL</label>
+                            <input type="url" name="social_youtube" class="form-input" value="<?php echo e($settings['social_youtube'] ?? ''); ?>">
                         </div>
                     </div>
                 </div>

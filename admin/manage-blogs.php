@@ -17,17 +17,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $slug = $_POST['slug'];
     $content = $_POST['content'];
     $excerpt = $_POST['excerpt'];
+    $featured_image = $_POST['featured_image'];
     $is_published = isset($_POST['is_published']) ? 1 : 0;
 
     if ($_POST['form_action'] === 'add') {
-        $stmt = $pdo->prepare("INSERT INTO blogs (title, slug, content, excerpt, is_published) VALUES (?, ?, ?, ?, ?)");
-        $stmt->execute([$title, $slug, $content, $excerpt, $is_published]);
+        $stmt = $pdo->prepare("INSERT INTO blogs (title, slug, content, excerpt, featured_image, is_published) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->execute([$title, $slug, $content, $excerpt, $featured_image, $is_published]);
         header("Location: manage-blogs.php?success=added");
         exit;
     } elseif ($_POST['form_action'] === 'edit') {
         $id = (int)$_POST['id'];
-        $stmt = $pdo->prepare("UPDATE blogs SET title = ?, slug = ?, content = ?, excerpt = ?, is_published = ? WHERE id = ?");
-        $stmt->execute([$title, $slug, $content, $excerpt, $is_published, $id]);
+        $stmt = $pdo->prepare("UPDATE blogs SET title = ?, slug = ?, content = ?, excerpt = ?, featured_image = ?, is_published = ? WHERE id = ?");
+        $stmt->execute([$title, $slug, $content, $excerpt, $featured_image, $is_published, $id]);
         header("Location: manage-blogs.php?success=updated");
         exit;
     }
@@ -116,6 +117,10 @@ $blogs = $pdo->query("SELECT * FROM blogs ORDER BY created_at DESC")->fetchAll()
                             <label class="block text-[10px] font-black uppercase tracking-widest text-[#7A8AAA] mb-1">Title</label>
                             <input type="text" name="title" id="form-title" class="form-input" required onkeyup="generateSlug(this.value)">
                         </div>
+                        <div class="col-span-2">
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-[#7A8AAA] mb-1">Featured Image URL</label>
+                            <input type="text" name="featured_image" id="form-image" class="form-input" placeholder="https://example.com/image.jpg">
+                        </div>
                         <div>
                             <label class="block text-[10px] font-black uppercase tracking-widest text-[#7A8AAA] mb-1">Slug</label>
                             <input type="text" name="slug" id="form-slug" class="form-input" required>
@@ -151,6 +156,7 @@ $blogs = $pdo->query("SELECT * FROM blogs ORDER BY created_at DESC")->fetchAll()
                 document.getElementById('form-id').value = data.id;
                 document.getElementById('form-title').value = data.title;
                 document.getElementById('form-slug').value = data.slug;
+                document.getElementById('form-image').value = data.featured_image || '';
                 document.getElementById('form-excerpt').value = data.excerpt;
                 document.getElementById('form-content').value = data.content;
                 document.getElementById('form-published').checked = data.is_published == 1;
@@ -160,6 +166,7 @@ $blogs = $pdo->query("SELECT * FROM blogs ORDER BY created_at DESC")->fetchAll()
                 document.getElementById('form-id').value = '';
                 document.getElementById('form-title').value = '';
                 document.getElementById('form-slug').value = '';
+                document.getElementById('form-image').value = '';
                 document.getElementById('form-excerpt').value = '';
                 document.getElementById('form-content').value = '';
                 document.getElementById('form-published').checked = false;

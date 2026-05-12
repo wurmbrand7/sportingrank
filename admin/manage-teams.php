@@ -78,6 +78,8 @@ $teams = $teams->fetchAll();
             <a href="dashboard.php" class="sidebar-link">📊 Dashboard</a>
             <a href="manage-sports.php" class="sidebar-link">🏆 Manage Sports</a>
             <a href="manage-teams.php" class="sidebar-link active">👥 Manage Teams</a>
+            <a href="manage-blogs.php" class="sidebar-link">📝 Manage Blogs</a>
+            <a href="manage-backlinks.php" class="sidebar-link">🔗 Backlinks</a>
             <a href="manage-settings.php" class="sidebar-link">⚙️ Site Settings</a>
         </nav>
     </aside>

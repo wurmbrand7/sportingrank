@@ -8,6 +8,11 @@ $blogs = $pdo->query("SELECT * FROM blogs WHERE is_published = 1 ORDER BY create
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <?php foreach ($blogs as $b): ?>
                 <div class="glass-card rounded-2xl border border-border overflow-hidden group">
+                    <?php if(!empty($b['featured_image'])): ?>
+                        <div class="aspect-video overflow-hidden">
+                            <img src="<?php echo e($b['featured_image']); ?>" alt="<?php echo e($b['title']); ?>" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        </div>
+                    <?php endif; ?>
                     <div class="p-6">
                         <span class="text-accent text-[10px] font-black uppercase tracking-widest mb-2 block"><?php echo date('M d, Y', strtotime($b['created_at'])); ?></span>
                         <h2 class="text-xl font-bold uppercase tracking-tight mb-4 group-hover:text-accent transition"><?php echo e($b['title']); ?></h2>

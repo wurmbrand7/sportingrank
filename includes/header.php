@@ -160,11 +160,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <a href="<?php echo SITE_URL; ?>#rankings" class="hover:text-accent transition">
                 <?php echo t('nav.rankings', 'Rankings'); ?>
             </a>
-            <a href="<?php echo SITE_URL; ?>/history.php" class="hover:text-accent transition">
-                <?php echo t('nav.history', 'History'); ?>
-            </a>
-            <a href="<?php echo SITE_URL; ?>/about.php" class="hover:text-accent transition">
-                <?php echo t('nav.about', 'About'); ?>
+            <a href="<?php echo SITE_URL; ?>/blog.php" class="hover:text-accent transition">
+                <?php echo t('nav.blog', 'Insights'); ?>
             </a>
             <a href="<?php echo SITE_URL; ?>/admin" class="text-muted hover:text-accent transition text-[10px]">
                 Admin
@@ -194,15 +191,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   hover:text-accent transition py-2 border-b border-white/5">
             <?php echo t('nav.rankings', 'Rankings'); ?>
         </a>
-        <a href="<?php echo SITE_URL; ?>/history.php"
+        <a href="<?php echo SITE_URL; ?>/blog.php"
            class="block font-heading font-bold uppercase text-sm tracking-widest
                   hover:text-accent transition py-2 border-b border-white/5">
-            <?php echo t('nav.history', 'History'); ?>
-        </a>
-        <a href="<?php echo SITE_URL; ?>/about.php"
-           class="block font-heading font-bold uppercase text-sm tracking-widest
-                  hover:text-accent transition py-2 border-b border-white/5">
-            <?php echo t('nav.about', 'About'); ?>
+            <?php echo t('nav.blog', 'Insights'); ?>
         </a>
         <div class="relative flex items-center pt-1">
             <input type="text" id="site-search-mobile"

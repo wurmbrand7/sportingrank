@@ -13,9 +13,29 @@
 
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-12 text-sm font-bold uppercase tracking-widest">
                     <div class="flex flex-col space-y-3">
-                        <span class="text-accent text-[10px]">Company</span>
-                        <a href="#" class="hover:text-accent transition">About Us</a>
-                        <a href="#" class="hover:text-accent transition">Contact</a>
+                        <span class="text-accent text-[10px]">Follow Us</span>
+                        <div class="flex flex-col space-y-2">
+                            <?php if(!empty($settings['social_facebook'])): ?>
+                                <a href="<?php echo e($settings['social_facebook']); ?>" class="hover:text-accent transition flex items-center gap-2">
+                                    <span class="text-xs">FB</span> Facebook
+                                </a>
+                            <?php endif; ?>
+                            <?php if(!empty($settings['social_twitter'])): ?>
+                                <a href="<?php echo e($settings['social_twitter']); ?>" class="hover:text-accent transition flex items-center gap-2">
+                                    <span class="text-xs">TW</span> Twitter
+                                </a>
+                            <?php endif; ?>
+                            <?php if(!empty($settings['social_instagram'])): ?>
+                                <a href="<?php echo e($settings['social_instagram']); ?>" class="hover:text-accent transition flex items-center gap-2">
+                                    <span class="text-xs">IG</span> Instagram
+                                </a>
+                            <?php endif; ?>
+                            <?php if(!empty($settings['social_youtube'])): ?>
+                                <a href="<?php echo e($settings['social_youtube']); ?>" class="hover:text-accent transition flex items-center gap-2">
+                                    <span class="text-xs">YT</span> YouTube
+                                </a>
+                            <?php endif; ?>
+                        </div>
                     </div>
                     <div class="flex flex-col space-y-3">
                         <span class="text-accent text-[10px]">Portal</span>
