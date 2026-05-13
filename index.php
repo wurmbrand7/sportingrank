@@ -13,7 +13,7 @@ $sport_ids = array_column($sports, 'id');
 $all_teams = [];
 if (!empty($sport_ids)) {
     $placeholders = implode(',', array_fill(0, count($sport_ids), '?'));
-    $stmt = $pdo->prepare("SELECT * FROM teams WHERE sport_id IN ($placeholders) AND is_active = 1 ORDER BY points DESC, wins DESC");
+    $stmt = $pdo->prepare("SELECT * FROM teams WHERE sport_id IN ($placeholders) ORDER BY points DESC, wins DESC");
     $stmt->execute($sport_ids);
     $raw_teams = $stmt->fetchAll();
 
@@ -227,26 +227,6 @@ function setTeamType(type) {
     document.querySelectorAll(`.teams-tbody-${type} .points-counter`).forEach(c => {
         if (c.innerText === '0') counterObserver.observe(c);
     });
-}
-
-// ---------------------------------------------------------------------------
-// Vote handler
-// ---------------------------------------------------------------------------
-function voteForTeam(teamId, teamName) {
-    fetch('/ajax/vote.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ team_id: teamId })
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.success) {
-            alert('<?php echo t_raw('label.vote', 'Vote'); ?>: ' + teamName);
-        } else {
-            alert(data.message || 'Could not cast vote. Please try again.');
-        }
-    })
-    .catch(() => alert('Network error. Please try again.'));
 }
 
 // ---------------------------------------------------------------------------

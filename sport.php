@@ -167,18 +167,21 @@ echo '<script type="application/ld+json">' . json_encode([
                     <?php if (!empty($teams)): ?>
 
                         <!-- Desktop column headers (lg+) -->
-                        <div class="hidden lg:grid grid-cols-[80px_1fr_60px_100px_60px]
+                        <div class="hidden lg:grid grid-cols-[50px_1fr_50px_50px_50px_50px_90px_110px]
                                     px-6 py-3 text-[10px] font-black text-muted uppercase tracking-widest
                                     border-b border-border/40 bg-primary/30">
                             <div class="text-center"><?php echo t('label.rank', 'Rank'); ?></div>
                             <div class="pl-12"><?php echo t('label.team', 'Team / Entity'); ?></div>
                             <div class="text-center"><?php echo t('label.gp', 'GP'); ?></div>
-                            <div class="text-right"><?php echo t('label.points', 'Points'); ?></div>
-                            <div class="text-center"><?php echo t('label.status', 'Status'); ?></div>
+                            <div class="text-center"><?php echo t('label.wins', 'W'); ?></div>
+                            <div class="text-center"><?php echo t('label.losses', 'L'); ?></div>
+                            <div class="text-center"><?php echo t('label.draws', 'D'); ?></div>
+                            <div class="text-center"><?php echo t('label.points', 'Points'); ?></div>
+                            <div class="text-right"><?php echo t('label.action', 'Action'); ?></div>
                         </div>
 
                         <!-- Mobile column headers (<lg) -->
-                        <div class="grid lg:hidden grid-cols-[52px_1fr_auto]
+                        <div class="grid lg:hidden grid-cols-[40px_1fr_auto]
                                     px-3 py-2 text-[9px] font-black text-muted uppercase tracking-widest
                                     border-b border-border/40 bg-primary/30">
                             <div class="text-center"><?php echo t('label.rank', '#'); ?></div>
@@ -186,85 +189,11 @@ echo '<script type="application/ld+json">' . json_encode([
                             <div class="text-right pr-1"><?php echo t('label.points', 'Pts'); ?></div>
                         </div>
 
-                        <?php foreach ($teams as $team): ?>
-                            <?php
-                                $rank  = (int)$team['rank_position'];
-                                $medal = medal_classes($rank);
-                                $flag  = e(strtolower($team['country_code'] ?? 'un'));
-                                $pts   = number_format((float)($team['points'] ?? 0));
-                                $gp    = (int)($team['matches_played'] ?? 0);
-                                $ach   = e($team['notable_achievement'] ?? t_raw('label.season', 'Season 25/26'));
-                            ?>
-
-                            <!-- DESKTOP ROW -->
-                            <div class="hidden lg:grid grid-cols-[80px_1fr_60px_100px_60px]
-                                        items-center border-b border-border/20 hover:bg-white/5
-                                        transition group px-6 py-4">
-                                <div class="text-center">
-                                    <span class="font-heading font-black text-2xl italic
-                                                 <?php echo $rank <= 3 ? 'text-accent' : 'text-white/80'; ?>">
-                                        #<?php echo $rank; ?>
-                                    </span>
-                                </div>
-                                <div class="flex items-center space-x-4 min-w-0">
-                                    <img src="https://flagcdn.com/32x24/<?php echo $flag; ?>.png"
-                                         alt="<?php echo e($team['team_name']); ?> flag"
-                                         class="rounded-sm opacity-80 group-hover:opacity-100 flex-shrink-0">
-                                    <div class="min-w-0">
-                                        <div class="font-black uppercase tracking-tight text-[#EEEEFF] group-hover:text-white truncate">
-                                            <?php echo e($team['team_name']); ?>
-                                        </div>
-                                        <div class="text-[9px] font-bold text-muted uppercase tracking-widest">
-                                            <?php echo $ach; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-center font-bold text-muted"><?php echo $gp; ?></div>
-                                <div class="text-right">
-                                    <div class="font-heading font-black text-xl text-accent"><?php echo $pts; ?></div>
-                                </div>
-                                <div class="text-center">
-                                    <span class="inline-block w-2 h-2 rounded-full bg-green-500
-                                                 shadow-[0_0_8px_rgba(34,197,94,0.6)]"
-                                          aria-label="Active"></span>
-                                </div>
-                            </div>
-
-                            <!-- MOBILE ROW -->
-                            <div class="grid lg:hidden grid-cols-[52px_1fr_auto]
-                                        items-center border-b border-border/20 hover:bg-white/5
-                                        transition px-3 py-3">
-                                <div class="flex justify-center">
-                                    <span class="w-8 h-8 flex items-center justify-center rounded-full
-                                                 text-[12px] font-black <?php echo $medal; ?>">
-                                        <?php echo $rank; ?>
-                                    </span>
-                                </div>
-                                <div class="flex items-center gap-2 min-w-0 px-2">
-                                    <img src="https://flagcdn.com/w40/<?php echo $flag; ?>.png"
-                                         alt="<?php echo e($team['team_name']); ?> flag"
-                                         onerror="this.src='/assets/img/default-flag.png'"
-                                         class="w-6 h-4 object-cover rounded-sm flex-shrink-0 opacity-80">
-                                    <div class="min-w-0">
-                                        <div class="font-black uppercase tracking-tight text-[13px] text-[#EEEEFF] truncate leading-tight">
-                                            <?php echo e($team['team_name']); ?>
-                                        </div>
-                                        <div class="text-[9px] font-bold text-muted uppercase tracking-wider truncate">
-                                            <?php echo $ach; ?><?php if ($gp): ?> · <?php echo $gp; ?> <?php echo t('label.gp','GP'); ?><?php endif; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="flex-shrink-0 text-right">
-                                    <div class="font-heading font-black text-[15px] text-accent leading-none">
-                                        <?php echo $pts; ?>
-                                    </div>
-                                    <div class="text-[8px] text-muted uppercase tracking-wider mt-0.5">
-                                        <?php echo t('label.pts','pts'); ?>
-                                    </div>
-                                </div>
-                            </div>
-
-                        <?php endforeach; ?>
+                        <?php
+                        foreach ($teams as $team) {
+                            echo render_team_row($team);
+                        }
+                        ?>
 
                     <?php else: ?>
                         <div class="py-20 text-center text-muted italic">

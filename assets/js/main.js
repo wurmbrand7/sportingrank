@@ -170,7 +170,7 @@ function setTeamType(type) {
 }
 
 function voteForTeam(teamId, teamName) {
-    fetch('ajax/vote.php', {
+    fetch('/ajax/vote.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
