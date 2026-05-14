@@ -285,305 +285,160 @@ INSERT INTO `teams` (sport_id, rank_position, team_name, team_type, country_code
 (11, 5, 'Baumgardner', 'club', 'fr', 92, 30, 25, 5, 0),
 (11, 6, 'Mayer', 'club', 'de', 90, 30, 25, 5, 0),
 (11, 7, 'Cameron', 'club', 'jp', 88, 30, 25, 5, 0),
-(11, 8, 'Persoon', 'club', 'br', 86, 30, 25, 5, 0),
-(11, 9, 'McCaskill', 'club', 'au', 84, 30, 25, 5, 0),
-(11, 10, 'Harper', 'club', 'es', 82, 30, 25, 5, 0),
-(12, 1, 'Makhachev', 'national', 'us', 100, 30, 25, 5, 0),
-(12, 2, 'Pereira', 'national', 'cn', 98, 30, 25, 5, 0),
-(12, 3, 'Jones', 'national', 'in', 96, 30, 25, 5, 0),
-(12, 4, 'Topuria', 'national', 'gb', 94, 30, 25, 5, 0),
-(12, 5, 'Muhammad', 'national', 'fr', 92, 30, 25, 5, 0),
-(12, 6, 'Edwards', 'national', 'de', 90, 30, 25, 5, 0),
-(12, 7, 'Volkanovski', 'national', 'jp', 88, 30, 25, 5, 0),
-(12, 8, 'Aspinall', 'national', 'br', 86, 30, 25, 5, 0),
-(12, 9, 'Holloway', 'national', 'au', 84, 30, 25, 5, 0),
-(12, 10, 'du Plessis', 'national', 'es', 82, 30, 25, 5, 0),
-(12, 1, 'Grasso', 'club', 'us', 100, 30, 25, 5, 0),
-(12, 2, 'Shevchenko', 'club', 'cn', 98, 30, 25, 5, 0),
-(12, 3, 'Zhang Weili', 'club', 'in', 96, 30, 25, 5, 0),
-(12, 4, 'Fiorot', 'club', 'gb', 94, 30, 25, 5, 0),
-(12, 5, 'Pena', 'club', 'fr', 92, 30, 25, 5, 0),
-(12, 6, 'Namajunas', 'club', 'de', 90, 30, 25, 5, 0),
-(12, 7, 'Blanchfield', 'club', 'jp', 88, 30, 25, 5, 0),
-(12, 8, 'Xiaonan', 'club', 'br', 86, 30, 25, 5, 0),
-(12, 9, 'Suarez', 'club', 'au', 84, 30, 25, 5, 0),
-(12, 10, 'Andrade', 'club', 'es', 82, 30, 25, 5, 0),
-(13, 1, 'USA Team', 'national', 'us', 86, 35, 28, 5, 2),
-(13, 2, 'China Team', 'national', 'cn', 76, 33, 23, 3, 7),
-(13, 3, 'India Team', 'national', 'in', 72, 32, 23, 6, 3),
-(13, 4, 'UK Team', 'national', 'gb', 118, 62, 28, 0, 34),
-(13, 5, 'France Team', 'national', 'fr', 92, 70, 21, 20, 29),
-(13, 6, 'Germany Team', 'national', 'de', 78, 58, 15, 10, 33),
-(13, 7, 'Japan Team', 'national', 'jp', 114, 71, 31, 19, 21),
-(13, 8, 'Brazil Team', 'national', 'br', 55, 23, 17, 2, 4),
-(13, 9, 'Australia Team', 'national', 'au', 64, 33, 19, 7, 7),
-(13, 10, 'Spain Team', 'national', 'es', 41, 37, 12, 20, 5),
-(13, 1, 'USA Pro', 'club', 'us', 75, 63, 22, 32, 9),
-(13, 2, 'China Pro', 'club', 'cn', 178, 73, 59, 13, 1),
-(13, 3, 'India Pro', 'club', 'in', 79, 28, 26, 1, 1),
-(13, 4, 'UK Pro', 'club', 'gb', 50, 24, 15, 4, 5),
-(13, 5, 'France Pro', 'club', 'fr', 68, 32, 20, 4, 8),
-(13, 6, 'Germany Pro', 'club', 'de', 193, 80, 57, 1, 22),
-(13, 7, 'Japan Pro', 'club', 'jp', 45, 74, 14, 57, 3),
-(13, 8, 'Brazil Pro', 'club', 'br', 51, 21, 15, 0, 6),
-(13, 9, 'Australia Pro', 'club', 'au', 186, 80, 60, 14, 6),
-(13, 10, 'Spain Pro', 'club', 'es', 173, 62, 57, 3, 2),
-(14, 1, 'USA Team', 'national', 'us', 146, 50, 48, 0, 2),
-(14, 2, 'China Team', 'national', 'cn', 81, 42, 24, 9, 9),
-(14, 3, 'India Team', 'national', 'in', 49, 60, 16, 43, 1),
-(14, 4, 'UK Team', 'national', 'gb', 97, 33, 32, 0, 1),
-(14, 5, 'France Team', 'national', 'fr', 133, 56, 42, 7, 7),
-(14, 6, 'Germany Team', 'national', 'de', 48, 45, 12, 21, 12),
-(14, 7, 'Japan Team', 'national', 'jp', 96, 69, 32, 37, 0),
-(14, 8, 'Brazil Team', 'national', 'br', 161, 67, 51, 8, 8),
-(14, 9, 'Australia Team', 'national', 'au', 83, 44, 20, 1, 23),
-(14, 10, 'Spain Team', 'national', 'es', 73, 74, 10, 21, 43),
-(14, 1, 'USA Pro', 'club', 'us', 34, 20, 10, 6, 4),
-(14, 2, 'China Pro', 'club', 'cn', 113, 61, 37, 22, 2),
-(14, 3, 'India Pro', 'club', 'in', 101, 75, 28, 30, 17),
-(14, 4, 'UK Pro', 'club', 'gb', 77, 38, 23, 7, 8),
-(14, 5, 'France Pro', 'club', 'fr', 110, 67, 30, 17, 20),
-(14, 6, 'Germany Pro', 'club', 'de', 102, 56, 33, 20, 3),
-(14, 7, 'Japan Pro', 'club', 'jp', 51, 64, 11, 35, 18),
-(14, 8, 'Brazil Pro', 'club', 'br', 178, 79, 54, 9, 16),
-(14, 9, 'Australia Pro', 'club', 'au', 97, 38, 32, 5, 1),
-(14, 10, 'Spain Pro', 'club', 'es', 51, 34, 10, 3, 21),
-(15, 1, 'USA Team', 'national', 'us', 62, 33, 15, 1, 17),
-(15, 2, 'China Team', 'national', 'cn', 136, 66, 45, 20, 1),
-(15, 3, 'India Team', 'national', 'in', 126, 59, 34, 1, 24),
-(15, 4, 'UK Team', 'national', 'gb', 60, 55, 17, 29, 9),
-(15, 5, 'France Team', 'national', 'fr', 90, 72, 23, 28, 21),
-(15, 6, 'Germany Team', 'national', 'de', 183, 68, 61, 7, 0),
-(15, 7, 'Japan Team', 'national', 'jp', 104, 46, 29, 0, 17),
-(15, 8, 'Brazil Team', 'national', 'br', 94, 71, 29, 35, 7),
-(15, 9, 'Australia Team', 'national', 'au', 84, 53, 17, 3, 33),
-(15, 10, 'Spain Team', 'national', 'es', 118, 44, 38, 2, 4),
-(15, 1, 'USA Pro', 'club', 'us', 116, 56, 35, 10, 11),
-(15, 2, 'China Pro', 'club', 'cn', 60, 21, 20, 1, 0),
-(15, 3, 'India Pro', 'club', 'in', 85, 65, 22, 24, 19),
-(15, 4, 'UK Pro', 'club', 'gb', 140, 59, 45, 9, 5),
-(15, 5, 'France Pro', 'club', 'fr', 74, 33, 22, 3, 8),
-(15, 6, 'Germany Pro', 'club', 'de', 160, 70, 45, 0, 25),
-(15, 7, 'Japan Pro', 'club', 'jp', 165, 76, 54, 19, 3),
-(15, 8, 'Brazil Pro', 'club', 'br', 165, 77, 55, 22, 0),
-(15, 9, 'Australia Pro', 'club', 'au', 63, 25, 21, 4, 0),
-(15, 10, 'Spain Pro', 'club', 'es', 99, 35, 33, 2, 0),
-(16, 1, 'USA Team', 'national', 'us', 104, 42, 34, 6, 2),
-(16, 2, 'China Team', 'national', 'cn', 93, 31, 31, 0, 0),
-(16, 3, 'India Team', 'national', 'in', 195, 71, 65, 6, 0),
-(16, 4, 'UK Team', 'national', 'gb', 53, 20, 17, 1, 2),
-(16, 5, 'France Team', 'national', 'fr', 41, 42, 12, 25, 5),
-(16, 6, 'Germany Team', 'national', 'de', 154, 71, 48, 13, 10),
-(16, 7, 'Japan Team', 'national', 'jp', 45, 21, 12, 0, 9),
-(16, 8, 'Brazil Team', 'national', 'br', 125, 57, 37, 6, 14),
-(16, 9, 'Australia Team', 'national', 'au', 100, 50, 30, 10, 10),
-(16, 10, 'Spain Team', 'national', 'es', 134, 57, 41, 5, 11),
-(16, 1, 'USA Pro', 'club', 'us', 57, 23, 18, 2, 3),
-(16, 2, 'China Pro', 'club', 'cn', 201, 74, 67, 7, 0),
-(16, 3, 'India Pro', 'club', 'in', 93, 44, 25, 1, 18),
-(16, 4, 'UK Pro', 'club', 'gb', 108, 70, 36, 34, 0),
-(16, 5, 'France Pro', 'club', 'fr', 142, 73, 45, 21, 7),
-(16, 6, 'Germany Pro', 'club', 'de', 132, 44, 44, 0, 0),
-(16, 7, 'Japan Pro', 'club', 'jp', 181, 76, 56, 7, 13),
-(16, 8, 'Brazil Pro', 'club', 'br', 115, 42, 38, 3, 1),
-(16, 9, 'Australia Pro', 'club', 'au', 83, 61, 21, 20, 20),
-(16, 10, 'Spain Pro', 'club', 'es', 165, 76, 52, 15, 9),
-(17, 1, 'USA Team', 'national', 'us', 48, 22, 13, 0, 9),
-(17, 2, 'China Team', 'national', 'cn', 65, 47, 13, 8, 26),
-(17, 3, 'India Team', 'national', 'in', 41, 34, 11, 15, 8),
-(17, 4, 'UK Team', 'national', 'gb', 41, 25, 13, 10, 2),
-(17, 5, 'France Team', 'national', 'fr', 166, 58, 55, 2, 1),
-(17, 6, 'Germany Team', 'national', 'de', 172, 73, 57, 15, 1),
-(17, 7, 'Japan Team', 'national', 'jp', 64, 55, 17, 25, 13),
-(17, 8, 'Brazil Team', 'national', 'br', 114, 49, 38, 11, 0),
-(17, 9, 'Australia Team', 'national', 'au', 79, 46, 26, 19, 1),
-(17, 10, 'Spain Team', 'national', 'es', 157, 66, 46, 1, 19),
-(17, 1, 'USA Pro', 'club', 'us', 85, 35, 25, 0, 10),
-(17, 2, 'China Pro', 'club', 'cn', 59, 46, 19, 25, 2),
-(17, 3, 'India Pro', 'club', 'in', 86, 39, 27, 7, 5),
-(17, 4, 'UK Pro', 'club', 'gb', 43, 20, 12, 1, 7),
-(17, 5, 'France Pro', 'club', 'fr', 96, 62, 30, 26, 6),
-(17, 6, 'Germany Pro', 'club', 'de', 165, 68, 51, 5, 12),
-(17, 7, 'Japan Pro', 'club', 'jp', 87, 40, 24, 1, 15),
-(17, 8, 'Brazil Pro', 'club', 'br', 127, 56, 42, 13, 1),
-(17, 9, 'Australia Pro', 'club', 'au', 52, 24, 15, 2, 7),
-(17, 10, 'Spain Pro', 'club', 'es', 76, 45, 22, 13, 10),
-(18, 1, 'Verstappen', 'national', 'us', 119, 65, 37, 20, 8),
-(18, 2, 'Norris', 'national', 'cn', 65, 30, 19, 3, 8),
-(18, 3, 'Leclerc', 'national', 'in', 171, 79, 47, 2, 30),
-(18, 4, 'Piastri', 'national', 'gb', 53, 44, 14, 19, 11),
-(18, 5, 'Sainz', 'national', 'fr', 88, 67, 15, 9, 43),
-(18, 6, 'Hamilton', 'national', 'de', 97, 45, 27, 2, 16),
-(18, 7, 'Russell', 'national', 'jp', 80, 50, 20, 10, 20),
-(18, 8, 'Perez', 'national', 'br', 84, 36, 26, 4, 6),
-(18, 9, 'Alonso', 'national', 'au', 58, 40, 11, 4, 25),
-(18, 10, 'Hulkenberg', 'national', 'es', 78, 76, 21, 40, 15),
-(18, 1, 'McLaren', 'club', 'us', 131, 55, 42, 8, 5),
-(18, 2, 'Red Bull', 'club', 'cn', 96, 56, 32, 24, 0),
-(18, 3, 'Ferrari', 'club', 'in', 85, 49, 28, 20, 1),
-(18, 4, 'Mercedes', 'club', 'gb', 43, 49, 12, 30, 7),
-(18, 5, 'Aston Martin', 'club', 'fr', 149, 61, 48, 8, 5),
-(18, 6, 'RB', 'club', 'de', 55, 43, 11, 10, 22),
-(18, 7, 'Haas', 'club', 'jp', 61, 47, 13, 12, 22),
-(18, 8, 'Williams', 'club', 'br', 163, 65, 54, 10, 1),
-(18, 9, 'Alpine', 'club', 'au', 226, 77, 75, 1, 1),
-(18, 10, 'Sauber', 'club', 'es', 151, 53, 50, 2, 1),
-(19, 1, 'USA Team', 'national', 'us', 115, 51, 32, 0, 19),
-(19, 2, 'China Team', 'national', 'cn', 93, 52, 25, 9, 18),
-(19, 3, 'India Team', 'national', 'in', 124, 44, 40, 0, 4),
-(19, 4, 'UK Team', 'national', 'gb', 120, 60, 39, 18, 3),
-(19, 5, 'France Team', 'national', 'fr', 121, 64, 32, 7, 25),
-(19, 6, 'Germany Team', 'national', 'de', 60, 37, 13, 3, 21),
-(19, 7, 'Japan Team', 'national', 'jp', 56, 42, 18, 22, 2),
-(19, 8, 'Brazil Team', 'national', 'br', 78, 48, 24, 18, 6),
-(19, 9, 'Australia Team', 'national', 'au', 110, 40, 36, 2, 2),
-(19, 10, 'Spain Team', 'national', 'es', 85, 39, 24, 2, 13),
-(19, 1, 'USA Pro', 'club', 'us', 63, 24, 20, 1, 3),
-(19, 2, 'China Pro', 'club', 'cn', 76, 26, 25, 0, 1),
-(19, 3, 'India Pro', 'club', 'in', 59, 68, 11, 31, 26),
-(19, 4, 'UK Pro', 'club', 'gb', 139, 80, 39, 19, 22),
-(19, 5, 'France Pro', 'club', 'fr', 135, 52, 42, 1, 9),
-(19, 6, 'Germany Pro', 'club', 'de', 172, 69, 56, 9, 4),
-(19, 7, 'Japan Pro', 'club', 'jp', 58, 45, 18, 23, 4),
-(19, 8, 'Brazil Pro', 'club', 'br', 56, 27, 17, 5, 5),
-(19, 9, 'Australia Pro', 'club', 'au', 103, 75, 22, 16, 37),
-(19, 10, 'Spain Pro', 'club', 'es', 46, 24, 11, 0, 13),
-(20, 1, 'USA Team', 'national', 'us', 120, 45, 39, 3, 3),
-(20, 2, 'China Team', 'national', 'cn', 133, 54, 44, 9, 1),
-(20, 3, 'India Team', 'national', 'in', 180, 74, 60, 14, 0),
-(20, 4, 'UK Team', 'national', 'gb', 44, 25, 12, 5, 8),
-(20, 5, 'France Team', 'national', 'fr', 86, 41, 27, 9, 5),
-(20, 6, 'Germany Team', 'national', 'de', 38, 50, 12, 36, 2),
-(20, 7, 'Japan Team', 'national', 'jp', 102, 43, 33, 7, 3),
-(20, 8, 'Brazil Team', 'national', 'br', 38, 22, 12, 8, 2),
-(20, 9, 'Australia Team', 'national', 'au', 70, 45, 15, 5, 25),
-(20, 10, 'Spain Team', 'national', 'es', 215, 75, 71, 2, 2),
-(20, 1, 'USA Pro', 'club', 'us', 66, 23, 22, 1, 0),
-(20, 2, 'China Pro', 'club', 'cn', 122, 61, 31, 1, 29),
-(20, 3, 'India Pro', 'club', 'in', 119, 77, 33, 24, 20),
-(20, 4, 'UK Pro', 'club', 'gb', 127, 64, 36, 9, 19),
-(20, 5, 'France Pro', 'club', 'fr', 160, 68, 53, 14, 1),
-(20, 6, 'Germany Pro', 'club', 'de', 105, 39, 34, 2, 3),
-(20, 7, 'Japan Pro', 'club', 'jp', 108, 71, 25, 13, 33),
-(20, 8, 'Brazil Pro', 'club', 'br', 67, 31, 21, 6, 4),
-(20, 9, 'Australia Pro', 'club', 'au', 108, 54, 34, 14, 6),
-(20, 10, 'Spain Pro', 'club', 'es', 82, 65, 23, 29, 13),
-(21, 1, 'USA Team', 'national', 'us', 118, 69, 28, 7, 34),
-(21, 2, 'China Team', 'national', 'cn', 136, 50, 44, 2, 4),
-(21, 3, 'India Team', 'national', 'in', 79, 60, 13, 7, 40),
-(21, 4, 'UK Team', 'national', 'gb', 101, 51, 33, 16, 2),
-(21, 5, 'France Team', 'national', 'fr', 69, 65, 17, 30, 18),
-(21, 6, 'Germany Team', 'national', 'de', 59, 31, 15, 2, 14),
-(21, 7, 'Japan Team', 'national', 'jp', 39, 66, 10, 47, 9),
-(21, 8, 'Brazil Team', 'national', 'br', 144, 59, 43, 1, 15),
-(21, 9, 'Australia Team', 'national', 'au', 218, 78, 72, 4, 2),
-(21, 10, 'Spain Team', 'national', 'es', 77, 55, 11, 0, 44),
-(21, 1, 'USA Pro', 'club', 'us', 48, 24, 16, 8, 0),
-(21, 2, 'China Pro', 'club', 'cn', 124, 54, 39, 8, 7),
-(21, 3, 'India Pro', 'club', 'in', 43, 26, 14, 11, 1),
-(21, 4, 'UK Pro', 'club', 'gb', 148, 54, 48, 2, 4),
-(21, 5, 'France Pro', 'club', 'fr', 65, 62, 20, 37, 5),
-(21, 6, 'Germany Pro', 'club', 'de', 42, 39, 10, 17, 12),
-(21, 7, 'Japan Pro', 'club', 'jp', 120, 49, 37, 3, 9),
-(21, 8, 'Brazil Pro', 'club', 'br', 69, 55, 21, 28, 6),
-(21, 9, 'Australia Pro', 'club', 'au', 85, 45, 26, 12, 7),
-(21, 10, 'Spain Pro', 'club', 'es', 113, 65, 36, 24, 5);
 
-
-DROP TABLE IF EXISTS `site_settings`;
-CREATE TABLE `site_settings` (
-  `setting_key` varchar(100) NOT NULL,
-  `setting_value` text,
-  `setting_group` varchar(50) DEFAULT 'general',
-  PRIMARY KEY (`setting_key`)
+-- World Cup 2026 Tables
+DROP TABLE IF EXISTS `wc_settings`;
+CREATE TABLE `wc_settings` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `setting_key` varchar(100) UNIQUE,
+    `setting_value` text,
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `site_settings` (`setting_key`, `setting_value`, `setting_group`) VALUES
-('site_title', 'Sporting Rank | Sport Rank | Sports Ranking', 'general'),
-('site_tagline', 'Rankings for the world\'s top sports', 'general'),
-('meta_description', 'Check latest rankings for Soccer, Cricket, MMA, F1 and more.', 'seo'),
-('google_tag_manager', 'GTM-KHV4WRSQ', 'analytics'),
-('google_search_console', 'GSC_VERIFICATION_TOKEN_HERE', 'analytics'),
-('google_analytics', 'G-XXXXXXXXXX', 'analytics'),
-('social_facebook', 'https://facebook.com/sportingrank', 'social'),
-('social_twitter', 'https://twitter.com/sportingrank', 'social'),
-('social_instagram', 'https://instagram.com/sportingrank', 'social'),
-('social_youtube', 'https://youtube.com/sportingrank', 'social');
-
-DROP TABLE IF EXISTS `admin_users`;
-CREATE TABLE `admin_users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(100) NOT NULL,
-  `password_hash` varchar(255) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`)
+DROP TABLE IF EXISTS `wc_stadiums`;
+CREATE TABLE `wc_stadiums` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `name` varchar(255),
+    `capacity` int(11),
+    `city` varchar(255),
+    `country` varchar(100),
+    `note` text,
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `admin_users` (`username`, `password_hash`, `email`) VALUES
-('admin', '$2y$10$NFyZJKAnwUOmmmQq0L8wEejkl1aZoSotFigPq2cBY67qLjtSO/kyS', 'admin@sportingrank.com');
-
-DROP TABLE IF EXISTS `languages`;
-CREATE TABLE `languages` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `code` varchar(5) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `flag` varchar(5) NOT NULL,
-  `is_rtl` tinyint(1) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `code` (`code`)
+DROP TABLE IF EXISTS `wc_groups`;
+CREATE TABLE `wc_groups` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `group_letter` char(1) UNIQUE,
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `languages` (`code`, `name`, `flag`, `is_rtl`) VALUES
-('en', 'English', '🇺🇸', 0), ('fr', 'Français', '🇫🇷', 0), ('es', 'Español', '🇪🇸', 0), ('ar', 'العربية', '🇸🇦', 1);
-
-DROP TABLE IF EXISTS `translations`;
-CREATE TABLE `translations` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lang_code` varchar(5) NOT NULL,
-  `tkey` varchar(120) NOT NULL,
-  `tvalue` text NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `lang_key` (`lang_code`,`tkey`)
+DROP TABLE IF EXISTS `wc_teams`;
+CREATE TABLE `wc_teams` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `name` varchar(255),
+    `group_id` int(11),
+    `confederation` varchar(100),
+    `matches_played` int(11) DEFAULT 0,
+    `wins` int(11) DEFAULT 0,
+    `draws` int(11) DEFAULT 0,
+    `losses` int(11) DEFAULT 0,
+    `goals_for` int(11) DEFAULT 0,
+    `goals_against` int(11) DEFAULT 0,
+    `points` int(11) DEFAULT 0,
+    PRIMARY KEY (`id`),
+    KEY `group_id` (`group_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `translations` (`lang_code`, `tkey`, `tvalue`) VALUES
-('en', 'nav.rankings', 'Rankings'), ('en', 'label.men', 'Men'), ('en', 'label.women', 'Women'),
-('en', 'nav.national', 'National'), ('en', 'nav.leagues', 'Leagues'),
-('en', 'nav.full_standings', 'Full Standings'), ('en', 'label.SportingRank', 'Sporting Rank'), ('en', 'label.pts', 'pts');
-
-DROP TABLE IF EXISTS `blogs`;
-CREATE TABLE `blogs` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL,
-  `slug` varchar(255) NOT NULL,
-  `content` text,
-  `excerpt` text,
-  `featured_image` varchar(255) DEFAULT NULL,
-  `is_published` tinyint(1) DEFAULT 0,
-  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `slug` (`slug`)
+DROP TABLE IF EXISTS `wc_matches`;
+CREATE TABLE `wc_matches` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `home_team_id` int(11),
+    `away_team_id` int(11),
+    `home_score` int(11),
+    `away_score` int(11),
+    `match_date` datetime,
+    `group_id` int(11),
+    `stadium_id` int(11),
+    `status` varchar(50) DEFAULT 'scheduled',
+    PRIMARY KEY (`id`),
+    KEY `home_team_id` (`home_team_id`),
+    KEY `away_team_id` (`away_team_id`),
+    KEY `group_id` (`group_id`),
+    KEY `stadium_id` (`stadium_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-DROP TABLE IF EXISTS `backlinks`;
-CREATE TABLE `backlinks` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL,
-  `url` varchar(255) NOT NULL,
-  `rel` varchar(50) DEFAULT 'nofollow',
-  `is_active` tinyint(1) DEFAULT 1,
-  PRIMARY KEY (`id`)
+DROP TABLE IF EXISTS `wc_history`;
+CREATE TABLE `wc_history` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `year` int(11),
+    `winner` varchar(255),
+    `runner_up` varchar(255),
+    `host` varchar(255),
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-DROP TABLE IF EXISTS `activity_log`;
-CREATE TABLE `activity_log` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11),
-  `action` text,
-  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+DROP TABLE IF EXISTS `wc_facts`;
+CREATE TABLE `wc_facts` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `fact_text` text,
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS `wc_polls`;
+CREATE TABLE `wc_polls` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `question` text,
+    `is_active` tinyint(1) DEFAULT 1,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS `wc_poll_options`;
+CREATE TABLE `wc_poll_options` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `poll_id` int(11),
+    `option_text` text,
+    `votes` int(11) DEFAULT 0,
+    PRIMARY KEY (`id`),
+    KEY `poll_id` (`poll_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `wc_settings` (setting_key, setting_value) VALUES
+('wc_dates', 'June 11 – July 19, 2026'),
+('wc_hosts', 'USA, Mexico, Canada'),
+('wc_total_teams', '48'),
+('wc_total_matches', '104'),
+('wc_total_groups', '12'),
+('wc_opening_match', 'Mexico vs. TBA — Azteca Stadium, Mexico City'),
+('wc_final', 'MetLife Stadium — New Jersey, USA');
+
+INSERT INTO `wc_groups` (group_letter) VALUES ('A'),('B'),('C'),('D'),('E'),('F'),('G'),('H'),('I'),('J'),('K'),('L');
+
+INSERT INTO `wc_stadiums` (name, capacity, city, country, note) VALUES
+('MetLife Stadium', 82500, 'East Rutherford', 'USA', 'Venue for the 2026 Final.'),
+('SoFi Stadium', 70240, 'Inglewood', 'USA', 'Most expensive stadium in the world.'),
+('AT&T Stadium', 80000, 'Arlington', 'USA', 'Features a massive retractable roof.'),
+('Arrowhead Stadium', 76416, 'Kansas City', 'USA', 'Loudest outdoor stadium in the world.'),
+('NRG Stadium', 72220, 'Houston', 'USA', 'Regularly hosts major sporting events.'),
+('Mercedes-Benz Stadium', 71000, 'Atlanta', 'USA', 'Unique retractable roof design.'),
+('Lincoln Financial Field', 67594, 'Philadelphia', 'USA', 'Home of the NFL\'s Eagles.'),
+('Lumen Field', 69000, 'Seattle', 'USA', 'Famous for its incredible atmosphere.'),
+('Levi\'s Stadium', 68500, 'Santa Clara', 'USA', 'Highly technological venue.'),
+('Gillette Stadium', 65878, 'Foxborough', 'USA', 'Home to many championship teams.'),
+('Hard Rock Stadium', 64767, 'Miami Gardens', 'USA', 'Multi-purpose tropical venue.'),
+('Azteca Stadium', 87523, 'Mexico City', 'Mexico', 'First to host three World Cups.'),
+('BBVA Stadium', 53500, 'Monterrey', 'Mexico', 'Known for spectacular mountain views.'),
+('Akron Stadium', 48071, 'Guadalajara', 'Mexico', 'Ultra-modern architectural marvel.'),
+('BMO Field', 30000, 'Toronto', 'Canada', 'Atmospheric soccer-specific stadium.'),
+('BC Place', 54500, 'Vancouver', 'Canada', 'Iconic retractable roof venue.');
+
+INSERT INTO `wc_history` (year, winner, runner_up, host) VALUES
+(2022, 'Argentina', 'France', 'Qatar'),
+(2018, 'France', 'Croatia', 'Russia'),
+(2014, 'Germany', 'Argentina', 'Brazil'),
+(2010, 'Spain', 'Netherlands', 'South Africa'),
+(2006, 'Italy', 'France', 'Germany'),
+(2002, 'Brazil', 'Germany', 'Korea/Japan'),
+(1998, 'France', 'Brazil', 'France'),
+(1994, 'Brazil', 'Italy', 'USA'),
+(1990, 'West Germany', 'Argentina', 'Italy'),
+(1986, 'Argentina', 'West Germany', 'Mexico');
+
+INSERT INTO `wc_facts` (fact_text) VALUES
+('First ever 48-team World Cup tournament.'),
+('Hosted across three North American nations.'),
+('The final will be held at MetLife Stadium in New Jersey.'),
+('A record 104 matches will be played in total.'),
+('Azteca Stadium becomes the first venue to host three World Cups.'),
+('Tournament expanded from 32 to 48 teams.'),
+('New format features 12 groups of 4 teams.'),
+('Top 2 from each group + 8 best 3rd-place teams advance.'),
+('Introduction of a Round of 32 knockout stage.'),
+('Total tournament duration extended to 39 days.');
+
+INSERT INTO `wc_polls` (question) VALUES ('Who do you think will win World Cup 2026?');
+INSERT INTO `wc_poll_options` (poll_id, option_text) VALUES
+(1, 'Argentina'), (1, 'France'), (1, 'Brazil'), (1, 'England'), (1, 'Spain'), (1, 'USA'), (1, 'Mexico'), (1, 'Canada');
 
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;

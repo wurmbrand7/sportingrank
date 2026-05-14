@@ -39,6 +39,7 @@
                     </div>
                     <div class="flex flex-col space-y-3">
                         <span class="text-accent text-[10px]">Portal</span>
+                        <a href="<?php echo SITE_URL; ?>/worldcup.php" class="hover:text-accent transition">World Cup 2026</a>
                         <a href="<?php echo SITE_URL; ?>/blog.php" class="hover:text-accent transition">Sports Insights</a>
                         <a href="<?php echo SITE_URL; ?>/admin" class="hover:text-accent transition">Admin Login</a>
                         <a href="<?php echo SITE_URL; ?>/sitemap.php" class="hover:text-accent transition">Sitemap</a>

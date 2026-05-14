@@ -170,6 +170,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <a href="<?php echo SITE_URL; ?>#rankings" class="hover:text-accent transition">
                 <?php echo t('nav.rankings', 'Rankings'); ?>
             </a>
+            <a href="<?php echo SITE_URL; ?>/worldcup.php" class="hover:text-accent transition">
+                World Cup 2026
+            </a>
             <a href="<?php echo SITE_URL; ?>/blog.php" class="hover:text-accent transition">
                 <?php echo t('nav.blog', 'Insights'); ?>
             </a>
@@ -177,12 +180,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 Admin
             </a>
             <!-- lang_switcher.php lives at ROOT, not inside includes/ -->
-            <?php require_once __DIR__ . '/../lang_switcher.php'; ?>
+            <?php require __DIR__ . '/../lang_switcher.php'; ?>
         </div>
 
         <!-- Mobile: switcher + hamburger -->
         <div class="md:hidden flex items-center gap-3">
-            <?php require_once __DIR__ . '/../lang_switcher.php'; ?>
+            <?php require __DIR__ . '/../lang_switcher.php'; ?>
             <button id="mobile-menu-btn" class="text-white" aria-label="Open menu">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                      viewBox="0 0 24 24" stroke="currentColor">
@@ -200,6 +203,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
            class="block font-heading font-bold uppercase text-sm tracking-widest
                   hover:text-accent transition py-2 border-b border-white/5">
             <?php echo t('nav.rankings', 'Rankings'); ?>
+        </a>
+        <a href="<?php echo SITE_URL; ?>/worldcup.php"
+           class="block font-heading font-bold uppercase text-sm tracking-widest
+                  hover:text-accent transition py-2 border-b border-white/5">
+            World Cup 2026
         </a>
         <a href="<?php echo SITE_URL; ?>/blog.php"
            class="block font-heading font-bold uppercase text-sm tracking-widest
